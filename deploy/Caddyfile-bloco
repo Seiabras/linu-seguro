@@ -1,5 +1,12 @@
 # Linu Seguro (Seiabras/linu-seguro, 07/11/2026): segurança digital para pequenos negócios
 seguro.linupedia.com.br {
+	# os pedidos de orçamento (linu-pedidos no linuarquivos/servidor, 07/11/2026)
+	handle /api/pedido {
+		request_body {
+			max_size 8KB
+		}
+		reverse_proxy 127.0.0.1:8094
+	}
 	# a identidade mora na Família Linu
 	redir /identidade https://familia.linupedia.com.br/identidade 301
 	encode zstd gzip

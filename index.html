@@ -462,10 +462,13 @@
             <label for="mensagem">Algo mais? <span class="opcional">(opcional)</span></label>
             <textarea id="mensagem" name="mensagem" rows="3" placeholder="Quantas pessoas na equipe, se já caiu em algum golpe, se tem site…"></textarea>
           </div>
+          <!-- campo que só robô preenche (o servidor ignora o pedido que vier com ele) -->
+          <div class="pote" aria-hidden="true"><label>Não preencha<input type="text" name="site_extra" tabindex="-1" autocomplete="off"></label></div>
           <div class="formulario-botoes">
             <a class="botao botao-whatsapp" href="https://wa.me/5561996672610" target="_blank" rel="noopener" data-enviar="whatsapp">Mandar pelo WhatsApp</a>
             <a class="botao botao-gelo" href="mailto:contato@linupedia.com.br" data-enviar="email">Mandar por e-mail</a>
           </div>
+          <p class="formulario-privacidade">Ao mandar, o pedido (nome, negócio, o que você escolheu e a mensagem) fica guardado por 12 meses só para a gente responder, e depois é apagado. Para ver ou apagar antes: contato@linupedia.com.br.</p>
         </div>
       </div>
     </section>

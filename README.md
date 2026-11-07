@@ -79,6 +79,11 @@ O pacote, a barra de baixo, o formulário, a mensagem, o Raio-X e os pacotes pro
 Serviço novo: um `<article class="servico bloco">` com `data-cat`, `data-id`, `data-preco` e `data-tipo`, a contagem da área
 no filtro, o total “Todas” e a entrada no JSON-LD.
 
+- **O registro dos pedidos (07/11/2026):** ao tocar em Mandar pelo WhatsApp ou por e-mail, a página manda o pedido (nome,
+  negócio, o que escolheu, a estimativa e a mensagem) para `/api/pedido` por `sendBeacon`, sem atrasar a abertura; o
+  Caddy encaminha para o `linu-pedidos` (linuarquivos/servidor), que guarda por 12 meses e avisa por e-mail. O aviso de
+  privacidade fica embaixo dos botões, e um campo escondido (`site_extra`) separa os robôs.
+
 ## Ver no computador
 
 ```bash

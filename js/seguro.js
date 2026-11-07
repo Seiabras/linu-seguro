@@ -252,6 +252,20 @@
     whats.href = "https://wa.me/5561996672610?text=" + t;
     email.href = "mailto:contato@linupedia.com.br?subject=" + encodeURIComponent("Orçamento Linu Seguro") + "&body=" + t;
   }
+  // o pedido também fica registrado (linuarquivos/servidor/linu-pedidos): sendBeacon não atrasa a abertura do WhatsApp
+  // nem do e-mail e segue mesmo se a página fechar; se falhar, a conversa continua igual
+  function registrar(canal) {
+    try {
+      var robo = form.querySelector('[name="site_extra"]');
+      var dados = {
+        nome: campo("nome").value.trim(), negocio: campo("negocio").value.trim(),
+        pacote: escolhidos.map(function (id) { return nomes[id]; }).join(", "),
+        estimativa: escolhidos.length ? estimativa(escolhidos) : "",
+        mensagem: campo("mensagem").value.trim(), canal: canal, site_extra: robo ? robo.value : ""
+      };
+      if (navigator.sendBeacon) navigator.sendBeacon("/api/pedido", new Blob([JSON.stringify(dados)], { type: "application/json" }));
+    } catch (e) {}
+  }
   [whats, email].forEach(function (a) {
     a.addEventListener("click", function (e) {
       var ok = conferir("nome", true) & conferir("negocio", true);
@@ -260,6 +274,7 @@
         form.querySelector('[aria-invalid="true"]').focus();
         return;
       }
+      registrar(a === email ? "email" : "whatsapp");
       a.classList.add("enviado");
       setTimeout(function () { a.classList.remove("enviado"); }, 1600);
     });
