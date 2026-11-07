@@ -397,7 +397,14 @@ body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 96px; }
   .marca { font-size: 1.2rem; gap: 8px; }
   .areas { position: sticky; top: 72px; z-index: 5; background: var(--neve); padding-top: 8px; }
   .rodape-links { width: 100%; }
+  /* os serviços correm de lado, um bloco por vez, abaixo das abas das áreas (07/11/2026) */
+  .faixa-dica { display: block; margin: 0 0 8px; font-size: .85rem; font-weight: 700; color: var(--tinta-suave); }
+  .servicos { grid-auto-flow: column; grid-auto-columns: 84%; align-items: stretch; margin: 0 -16px; padding: 6px 16px 18px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding: 0 16px; scrollbar-width: thin; }
+  .servico { scroll-snap-align: start; grid-template-rows: auto auto 1fr auto; }
+  .servico:nth-child(odd of .servico:not([hidden])), .servico:nth-child(even of .servico:not([hidden])) { margin: 0; }
 }
+.faixa-dica { display: none; }
+@media (max-width: 699px) { .faixa-dica { display: block; } }
 
 /* ===== Tablet (700 a 1099 px): faixa de áreas no alto, a parede em fileiras de 2, pacotes em 2 colunas ===== */
 @media (min-width: 700px) {
@@ -422,6 +429,7 @@ body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 96px; }
   .contato-dentro { grid-template-columns: 1fr 1.3fr; align-items: start; }
   .contato-linu { display: block; }
   .barra-pacote { left: auto; right: 24px; bottom: 24px; min-width: 380px; }
+  .barra-pacote.vazia { display: none; }
 }
 /* tablet em pé: o menu mais junto e o botão do orçamento com o rótulo curto, para caber numa linha */
 @media (min-width: 700px) and (max-width: 899px) {

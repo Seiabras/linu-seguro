@@ -27,9 +27,9 @@
   <link rel="preload" href="fontes/chakra-petch-latin-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fontes/red-hat-text-latin.woff2" as="font" type="font/woff2" crossorigin>
   <script src="js/tema-inicio.js?v=b2e4d710"></script>
-  <link rel="stylesheet" href="css/estilo.css?v=5417a39e">
+  <link rel="stylesheet" href="css/estilo.css?v=6cd4e4c8">
   <link rel="stylesheet" href="css/movimento.css?v=6c3684a3">
-  <script src="js/seguro.js?v=fb1ccdaf" defer></script>
+  <script src="js/seguro.js?v=12d8dece" defer></script>
   <script src="js/linu-vivo.js?v=daf0f399" defer></script>
   <script src="js/movimento.js?v=c068d761" defer></script>
 </head>
@@ -241,6 +241,7 @@
 
           <!-- Os blocos assentados em fileiras desencontradas, como alvenaria: cada fileira começa meio bloco para o lado,
                e os meios-blocos das pontas são só desenho (css/estilo.css, "A parede de serviços") -->
+          <p class="faixa-dica" aria-hidden="true">Arraste para o lado para ver os blocos →</p>
           <div class="servicos" data-mov-grupo="sobe" data-servicos>
             <article class="servico bloco" data-cat="acompanhar" data-id="checkup" data-preco="350" data-tipo="unico">
               <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-cadeado"/></svg>Acompanhamento</span>
@@ -478,11 +479,12 @@
     </section>
   </main>
 
-  <!-- No celular e no tablet, o pacote fica preso embaixo, ao alcance do polegar -->
-  <div class="barra-pacote" data-barra hidden>
+  <!-- No celular e no tablet, o pacote fica preso embaixo, ao alcance do polegar; vazio, a barra fica só no celular, com
+       o pedir (07/11/2026), e some na abertura e no contato -->
+  <aside class="barra-pacote" data-barra aria-label="O seu pacote" hidden>
     <span class="barra-texto" data-barra-texto aria-live="polite"></span>
     <a class="botao botao-pequeno" href="#contato">Pedir orçamento</a>
-  </div>
+  </aside>
 
   <footer class="rodape">
     <div class="dentro rodape-dentro">

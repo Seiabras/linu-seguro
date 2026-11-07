@@ -170,13 +170,14 @@
     var n = escolhidos.length;
     vazio.hidden = n > 0;
     limpar.hidden = n === 0;
-    barra.hidden = n === 0;
+    barra.hidden = false;
+    barra.classList.toggle("vazia", n === 0);   // vazia, só no celular (no tablet, o topo já tem o pedir)
     var est = estimativa(escolhidos);
     total.hidden = totalFormulario.hidden = !est;
     total.textContent = est ? "Estimativa: " + est : "";
     totalFormulario.textContent = est ? "Estimativa: " + est + ". O preço certo vem na proposta." : "";
     // na barra, o curto: "3 serviços: R$ 650 + R$ 150/mês"
-    barraTexto.textContent = n ? contagem(n) + (est ? ": " + est.replace("a partir de ", "").replace(" por mês", "/mês") : " no pacote") : "";
+    barraTexto.textContent = n ? contagem(n) + (est ? ": " + est.replace("a partir de ", "").replace(" por mês", "/mês") : " no pacote") : "Pacote vazio";
     noFormulario.textContent = n ? escolhidos.map(function (id) { return nomes[id]; }).join(", ")
       : "Nenhum serviço escolhido: tudo bem, conte na mensagem.";
     escreverMensagem();
@@ -203,12 +204,17 @@
       rolarAte("servicos");
     });
   });
-  // a barra de baixo some quando o formulário já está à vista
-  var contato = document.getElementById("contato");
+  // a barra de baixo some na abertura (que já tem os botões) e quando o formulário já está à vista
   if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (itens) {
-      barra.classList.toggle("escondida", itens[0].isIntersecting);
-    }, { threshold: 0.15 }).observe(contato);
+    var aVista = new Map();
+    var olhar = new IntersectionObserver(function (itens) {
+      itens.forEach(function (i) { aVista.set(i.target, i.isIntersecting); });
+      var algum = false;
+      aVista.forEach(function (v) { algum = algum || v; });
+      barra.classList.toggle("escondida", algum);
+    }, { threshold: 0.15 });
+    olhar.observe(document.getElementById("contato"));
+    olhar.observe(document.querySelector(".abertura"));
   }
 
   /* 5. Formulário: validação na hora e a mensagem pronta para o WhatsApp e o e-mail */

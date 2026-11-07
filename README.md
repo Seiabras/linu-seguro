@@ -43,7 +43,8 @@ O Caddy serve o subdomínio e manda `/identidade` para https://familia.linupedia
   (`localStorage`, `seguro-raiox`); a tabela das recomendações é o `RAIOX` do `js/seguro.js` (bloco 8).
 - **Monte o seu pacote:** cada serviço é um bloco com “Adicionar”; o pacote fica guardado no navegador
   (`localStorage`, `seguro-pacote`) e aparece ao lado como uma parede que sobe, um bloco por serviço (computador), ou
-  numa barra presa embaixo (celular e tablet).
+  numa barra presa embaixo (celular e tablet). Desde 07/11/2026, no celular a barra fica lá mesmo vazia (“Pacote vazio”
+  e o Pedir orçamento), depois da abertura; no tablet, vazia, some, porque o topo já tem o botão.
 - **Filtro por área:** Golpes, Senhas e dados, Site, e-mail e LGPD, Acompanhamento.
 - **Pacotes prontos:** Básico, Negócio protegido (o destaque) e Com site, cada um uma parede com um bloco por serviço,
   marcam os serviços de uma vez, com o total; o quarto, tracejado, leva aos pacotes da Família Linu.
@@ -54,7 +55,8 @@ O Caddy serve o subdomínio e manda `/identidade` para https://familia.linupedia
   sozinha. Só ao toque, nunca em loop; com “reduzir movimento”, a luz muda sem animar.
 - **Os blocos da parede:** os serviços ficam em fileiras desencontradas meio bloco (7 trilhas no computador, 5 no
   tablet, cada bloco ocupa 2), escolhidas no CSS por `:nth-child(… of .servico:not([hidden]))`, então o filtro refaz a
-  parede sozinho. Os meios-blocos das pontas são o `::after` do bloco, só desenho.
+  parede sozinho. Os meios-blocos das pontas são o `::after` do bloco, só desenho. No celular (07/11/2026), os blocos correm de lado, um por
+  vez, embaixo das abas das áreas, em vez de nove cartões empilhados.
 - **A faixa da família:** no alto, “Da família Linu, com o Linu Sites e o Digital Linu. Conheça a Família Linu”.
 - **Dúvidas com honestidade:** ninguém garante que o negócio nunca vai cair em golpe; as senhas ficam com o cliente; o
   aviso de privacidade é um modelo e não substitui advogado em dados sensíveis. Pagamento, revisões e fidelidade com as
