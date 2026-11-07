@@ -174,6 +174,10 @@ b, strong { font-weight: 700; }
 .cena-palco { position: relative; height: 362px; overflow: hidden; }
 .cena-iglu, .cena-luz { position: absolute; right: 0; bottom: 18px; width: 408px; height: 342px; }
 .cena-luz { opacity: 0; transition: opacity .25s ease-in; }
+/* o iglu da noite (ferramentas/iglu-noite.py) cobre o do dia no modo escuro; a luz da porta vem por cima */
+.cena-noite { opacity: 0; transition: opacity .25s ease-in; }
+:root[data-theme="dark"] .cena-noite { opacity: 1; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cena-noite { opacity: 1; } }
 .cena-brilho { position: absolute; right: 0; bottom: 52px; width: 130px; height: 144px; border-radius: 50%; background: radial-gradient(closest-side, rgba(253, 186, 116, .4), rgba(253, 186, 116, 0)); opacity: 0; pointer-events: none; transition: opacity .25s ease-in; }
 .cena-linu { position: absolute; left: 0; bottom: 0; width: 152px; height: 198px; transform-origin: bottom center; }
 .cena figcaption { position: absolute; left: 0; right: 0; bottom: 8px; z-index: 1; margin: 0; line-height: 1.35; color: var(--tinta-suave); font-size: .9rem; text-align: center; }
