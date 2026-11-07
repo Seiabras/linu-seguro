@@ -377,7 +377,6 @@ body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 96px; }
 .rodape-link, .topo-voltar { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 700; }
 
 /* Entradas ao rolar (js/seguro.js): só transform e opacity */
-.antes { opacity: 0; transform: translateY(14px); }
 .secao h2, .secao-sub, .servico, .pacote-pronto, .passos li, .duvidas details, .pergunta { transition-property: opacity, transform; transition-duration: .24s; transition-timing-function: var(--entrada); transition-delay: var(--atraso, 0ms); }
 
 /* ===== Celular (até 699 px): o menu no botão ===== */
@@ -510,7 +509,7 @@ body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 96px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: 0s !important; transition-delay: 0s !important; }
-  .antes, .servico.chegando { opacity: 1; transform: none; }
+  .servico.chegando { opacity: 1; transform: none; }
 }
 
 /* A página de erro */

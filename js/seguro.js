@@ -286,27 +286,7 @@
     window.scrollTo({ top: 0, behavior: menosMovimento.matches ? "auto" : "smooth" });
   });
 
-  /* 7. Entradas ao rolar: um observer só, uma vez por elemento, escalonado nas listas; o que já está na tela no
-        carregamento não é escondido (DIRETRIZES-UX.md, seção 1) */
-  if ("IntersectionObserver" in window && !menosMovimento.matches) {
-    var alvos = document.querySelectorAll(".secao h2, .secao-sub, .servico, .pacote-pronto, .passos li, .duvidas details, .pergunta");
-    var vistos = new IntersectionObserver(function (itens) {
-      itens.forEach(function (item) {
-        if (!item.isIntersecting) return;
-        item.target.classList.remove("antes");
-        vistos.unobserve(item.target);
-      });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    var altura = window.innerHeight;
-    alvos.forEach(function (el) {
-      if (el.getBoundingClientRect().top < altura) return;
-      var irmaos = el.parentElement.children;
-      var posicao = Array.prototype.indexOf.call(irmaos, el) % 6;
-      el.style.setProperty("--atraso", posicao * 50 + "ms");
-      el.classList.add("antes");
-      vistos.observe(el);
-    });
-  }
+  /* 7. Entradas ao rolar: js/movimento.js (o kit do linuarquivos), pelos atributos data-mov do index.html */
 
   /* 8. Raio-X: cada pergunta tem o seu bloco na cúpula (data-rx-bloco). Cada "sim" assenta o bloco ("não tenho site"
         também: não há site para proteger); cada "não" deixa o lugar marcado e aponta um serviço, com o motivo. As duas perguntas de contas levam ao mesmo serviço, que aparece uma
