@@ -175,7 +175,7 @@ b, strong { font-weight: 700; }
 .cena-iglu, .cena-luz { position: absolute; right: 0; bottom: 18px; width: 408px; height: 342px; }
 .cena-luz { opacity: 0; transition: opacity .25s ease-in; }
 .cena-brilho { position: absolute; right: 0; bottom: 52px; width: 130px; height: 144px; border-radius: 50%; background: radial-gradient(closest-side, rgba(253, 186, 116, .4), rgba(253, 186, 116, 0)); opacity: 0; pointer-events: none; transition: opacity .25s ease-in; }
-.cena-linu { position: absolute; left: 0; bottom: 0; width: 176px; height: 190px; transform-origin: bottom center; }
+.cena-linu { position: absolute; left: 0; bottom: 0; width: 152px; height: 198px; transform-origin: bottom center; }
 .cena figcaption { position: absolute; left: 0; right: 0; bottom: 8px; z-index: 1; margin: 0; line-height: 1.35; color: var(--tinta-suave); font-size: .9rem; text-align: center; }
 :root[data-theme="dark"] .cena-luz, :root[data-theme="dark"] .cena-brilho { opacity: 1; transition-timing-function: ease-out; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cena-luz, :root:not([data-theme="light"]) .cena-brilho { opacity: 1; } }
