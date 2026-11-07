@@ -1,90 +1,145 @@
-/* Linu Seguro (06/11/2026): a família Linu (grafite, azul, gelo, Nunito), com o azul-gelo do iglu como cor própria.
+/* Linu Seguro: o iglu de blocos (07/11/2026). A página é montada em blocos de gelo: o fundo é neve, cada serviço,
+   pergunta, botão e etapa é um bloco chanfrado com luz em cima e sombra azulada embaixo, as seções se separam por uma
+   fiada de blocos e o Raio-X assenta os blocos de uma cúpula. Letras: Chakra Petch (títulos) e Red Hat Text (texto).
    Três versões (DIRETRIZES-UX.md, seção 3): celular até 699 px, tablet de 700 a 1099 px, computador a partir de
-   1100 px. */
-@font-face { font-family: "Nunito"; font-style: normal; font-weight: 200 1000; font-display: swap; src: url(../fontes/nunito-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: "Nunito"; font-style: normal; font-weight: 200 1000; font-display: swap; src: url(../fontes/nunito-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+   1100 px. As decisões estão no IDENTIDADE.md. */
+@font-face { font-family: "Chakra Petch"; font-style: normal; font-weight: 700; font-display: swap; src: url(../fontes/chakra-petch-latin-700.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Red Hat Text"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(../fontes/red-hat-text-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
+/* Dia: neve e gelo. Os blocos são brancos com a sombra azulada; a junta é o azul-gelo entre eles. */
 :root {
-  --grafite: #1F2A44;
-  --cor: #0E7490;          /* Iglu: botões e textos sobre o branco (5,4:1; 5,0:1 sobre o gelo) */
+  --cor: #0E7490;          /* Iglu: botões e textos sobre a neve */
   --cor-forte: #155E75;
-  --cor-clara: #CFFAFE;
+  --cor-sombra: #0B4A5C;   /* a face de baixo do bloco cheio */
+  --cor-clara: #CFF1F8;
   --cor-texto: #FFFFFF;    /* o texto dos botões cheios */
-  --azul: #1D4ED8;
-  --fundo: #F8FAFC;
-  --gelo: #EFF8FF;
-  --cartao: #FFFFFF;
-  --tinta: #0F172A;
-  --tinta-suave: #475569;
-  --linha: #E2E8F0;
-  --raio: 18px;
+  --neve: #EDF5F9;         /* o fundo da página */
+  --gelo: #DCECF3;         /* as seções alternadas */
+  --bloco: #FFFFFF;
+  --bloco-fundo: #F2F9FC;
+  --luz: #FFFFFF;
+  --sombra: #9AC4D5;       /* a face de baixo do bloco */
+  --sombra-lado: #D3E7EF;  /* a face da direita */
+  --aresta: #B5D5E2;
+  --junta: #BFDAE6;
+  --assentado: #DDF4FA;    /* o bloco escolhido ou com "sim" */
+  --assentado-fundo: #C9ECF5;
+  --assentado-aresta: #79BFD3;
+  --rx-luz: #FFFFFF;
+  --tinta: #0B2230;
+  --tinta-suave: #3B5767;
+  --foco: #1D4ED8;
+  --ceu-alto: #BFE2EF;
+  --ceu-baixo: #EAF6FA;
+  --chao: #FFFFFF;
+  --chao-sombra: #D4E9F1;
+  --ponto: rgba(255, 255, 255, .9);  /* flocos de dia, estrelas à noite */
+  --porta: #0B3446;
+  --rodape: #0B2230;
+  --jw: 10px;              /* a largura da junta entre blocos */
   --entrada: cubic-bezier(.2, .7, .3, 1);
   color-scheme: light;
 }
+/* Noite polar: o céu escuro com estrelas, os blocos com brilho frio na aresta de cima. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --cor: #22D3EE; --cor-forte: #67E8F9; --cor-clara: #083344; --cor-texto: #042F2E; --azul: #93C5FD;
-    --fundo: #0B1220; --gelo: #0B1E33; --cartao: #111B2E; --tinta: #E2E8F0; --tinta-suave: #A3B1C6; --linha: #23324D;
+    --cor: #22D3EE; --cor-forte: #67E8F9; --cor-sombra: #0E7490; --cor-clara: #0B3A4A; --cor-texto: #042F2E;
+    --neve: #07111C; --gelo: #0B1A29; --bloco: #152C40; --bloco-fundo: #0F2233; --luz: rgba(165, 243, 252, .34);
+    --sombra: #030A12; --sombra-lado: rgba(0, 0, 0, .28); --aresta: rgba(103, 232, 249, .18); --junta: #040B14; --assentado: #0F3E52; --assentado-fundo: #0B3142; --assentado-aresta: rgba(34, 211, 238, .55); --rx-luz: #2D5068;
+    --tinta: #E4F2F8; --tinta-suave: #A6BFCC; --foco: #7DD3FC; --ceu-alto: #02060E; --ceu-baixo: #0B1D30;
+    --chao: #142A3E; --chao-sombra: #0C1E2F; --ponto: rgba(226, 246, 255, .85); --porta: #01050A; --rodape: #030912;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --cor: #22D3EE; --cor-forte: #67E8F9; --cor-clara: #083344; --cor-texto: #042F2E; --azul: #93C5FD;
-  --fundo: #0B1220; --gelo: #0B1E33; --cartao: #111B2E; --tinta: #E2E8F0; --tinta-suave: #A3B1C6; --linha: #23324D;
+  --cor: #22D3EE; --cor-forte: #67E8F9; --cor-sombra: #0E7490; --cor-clara: #0B3A4A; --cor-texto: #042F2E;
+  --neve: #07111C; --gelo: #0B1A29; --bloco: #152C40; --bloco-fundo: #0F2233; --luz: rgba(165, 243, 252, .34);
+  --sombra: #030A12; --sombra-lado: rgba(0, 0, 0, .28); --aresta: rgba(103, 232, 249, .18); --junta: #040B14; --assentado: #0F3E52; --assentado-fundo: #0B3142; --assentado-aresta: rgba(34, 211, 238, .55); --rx-luz: #2D5068;
+  --tinta: #E4F2F8; --tinta-suave: #A6BFCC; --foco: #7DD3FC; --ceu-alto: #02060E; --ceu-baixo: #0B1D30;
+  --chao: #142A3E; --chao-sombra: #0C1E2F; --ponto: rgba(226, 246, 255, .85); --porta: #01050A; --rodape: #030912;
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--fundo); color: var(--tinta); font-family: "Nunito", system-ui, sans-serif; font-size: 17px; line-height: 1.6; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--neve); color: var(--tinta); font-family: "Red Hat Text", system-ui, sans-serif; font-size: 17px; line-height: 1.6; }
 img { display: block; max-width: 100%; height: auto; }
-a { color: var(--azul); }
-:focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 6px; }
-.topo :focus-visible, .faixa-irma :focus-visible, .abertura :focus-visible, .contato :focus-visible, .rodape :focus-visible, .barra-pacote :focus-visible, .raiox-resultado :focus-visible { outline-color: #7DD3FC; }
+/* pixel art só em escala inteira: o tamanho vem sempre em px exatos, nunca encolhido pela largura */
+.pixel { image-rendering: pixelated; max-width: none; }
+a { color: var(--cor-forte); }
+:focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+.faixa-irma :focus-visible, .rodape :focus-visible, .barra-pacote :focus-visible { outline-color: #7DD3FC; }
 .dentro { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
-h1, h2, h3 { line-height: 1.2; margin: 0 0 .5em; }
-h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; }
+h1, h2, h3 { font-family: "Chakra Petch", "Red Hat Text", sans-serif; font-weight: 700; line-height: 1.12; margin: 0 0 .5em; letter-spacing: -.01em; }
+h2 { font-size: clamp(1.75rem, 4.4vw, 2.5rem); }
+b, strong { font-weight: 700; }
 [hidden] { display: none !important; }
-.pixel { image-rendering: pixelated; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icone { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* A faixa da família */
+/* ===== O bloco de gelo =====
+   O corpo do bloco é o ::before (chanfrado com clip-path), para o contorno de foco do elemento não ser cortado.
+   Luz de 3 px em cima, sombra azulada embaixo, aresta fina. Cada variante só troca as variáveis --b-*. */
+.bloco, .botao, .area, .adicionar, .luz, .menu-abrir, .pergunta label > span, .parede li {
+  position: relative; isolation: isolate; --c: 7px;
+}
+.bloco::before, .botao::before, .area::before, .adicionar::before, .luz::before, .menu-abrir::before,
+.pergunta label > span::before, .parede li::before, .servico::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c));
+  background: linear-gradient(var(--b-cima, var(--bloco)), var(--b-baixo, var(--bloco-fundo)));
+  box-shadow: inset 0 0 0 1px var(--b-aresta, var(--aresta)), inset 0 3px 0 var(--b-luz, var(--luz)), inset 2px 0 0 var(--b-luz, var(--luz)), inset -3px 0 0 var(--b-lado, var(--sombra-lado)), inset 0 calc(-1 * var(--b-sh, 6px)) 0 var(--b-sombra, var(--sombra));
+  transition: filter .2s ease-out;
+}
+/* o bloco que assentou (serviço no pacote, pergunta com "sim", bloco da parede em destaque) */
+.servico.escolhido, .pergunta.posta, .pacote-pronto-destaque .parede li, .pacote-lista li {
+  --b-cima: var(--assentado); --b-baixo: var(--assentado-fundo); --b-aresta: var(--assentado-aresta);
+}
+
+/* ===== Botões: blocos cheios, retos e chanfrados, que afundam ao toque ===== */
+.botao { --c: 6px; --b-cima: var(--cor); --b-baixo: var(--cor); --b-luz: rgba(255, 255, 255, .28); --b-sombra: var(--cor-sombra); --b-lado: rgba(0, 0, 0, .14); --b-aresta: transparent;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 22px 4px;
+  border: 0; background: none; color: var(--cor-texto); font: inherit; font-weight: 700; text-decoration: none; text-align: center; cursor: pointer;
+  transition: transform .15s ease-out; }
+.botao:hover::before, .area:hover::before, .adicionar:hover::before, .luz:hover::before, .menu-abrir:hover::before, .pergunta label:hover > span::before { filter: brightness(1.07) saturate(1.1); }
+.botao:active, .area:active, .adicionar:active, .luz:active, .menu-abrir:active, .pergunta label:active > span { transform: translateY(2px); }
+.botao:active::before, .adicionar:active::before, .area:active::before { --b-sh: 3px; }
+/* o bloco de gelo como botão secundário */
+.botao-gelo { --b-cima: var(--bloco); --b-baixo: var(--bloco-fundo); --b-luz: var(--luz); --b-sombra: var(--sombra); --b-lado: var(--sombra-lado); --b-aresta: var(--aresta); color: var(--cor-forte); }
+.botao-pequeno { min-height: 44px; padding: 0 16px 4px; font-size: .95rem; }
+.botao-whatsapp { --b-cima: #15803D; --b-baixo: #15803D; --b-sombra: #0D5229; color: #FFFFFF; }
+.botao.enviado { transform: translateY(2px); }
+
+/* A faixa da família (igual nos irmãos) */
 .faixa-irma { margin: 0; padding: 8px 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; background: #111827; color: #CBD5E1; font-size: .9rem; text-align: center; }
-.faixa-irma a { color: #7DD3FC; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; min-height: 24px; display: inline-flex; align-items: center; gap: 4px; transition: color .2s ease-out; }
+.faixa-irma a { color: #7DD3FC; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; min-height: 24px; display: inline-flex; align-items: center; gap: 4px; transition: color .2s ease-out; }
 .faixa-irma a:hover { color: #FFFFFF; }
 
-/* Botões */
-.botao { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 999px; border: 2px solid var(--cor); background: var(--cor); color: var(--cor-texto); font: inherit; font-weight: 800; text-decoration: none; text-align: center; cursor: pointer; transition: transform .15s ease-out, background-color .2s ease-out, border-color .2s ease-out, color .2s ease-out; }
-.botao:hover { background: var(--cor-forte); border-color: var(--cor-forte); }
-.botao:active { transform: scale(.97); }
-.botao-linha { background: transparent; color: var(--cor); }
-.botao-linha:hover { background: var(--cor-clara); color: var(--cor); }
-.botao-pequeno { min-height: 44px; padding: 0 16px; font-size: .95rem; }
-.botao-whatsapp { background: #15803D; border-color: #15803D; color: #FFFFFF; }
-.botao-whatsapp:hover { background: #166534; border-color: #166534; }
-.botao-linha-clara { background: transparent; border-color: rgba(255, 255, 255, .5); color: #FFFFFF; }
-.botao-linha-clara:hover { background: rgba(255, 255, 255, .12); border-color: rgba(255, 255, 255, .7); }
-.botao.enviado { transform: scale(1.03); }
-/* sobre o grafite (topo, abertura, Raio-X, barra), o botão cheio é sempre o ciano claro com texto escuro */
-.topo .botao, .abertura .botao:not(.botao-linha), .raiox-resultado .botao, .barra-pacote .botao { background: #22D3EE; border-color: #22D3EE; color: #042F2E; }
-.topo .botao:hover, .abertura .botao:not(.botao-linha):hover, .raiox-resultado .botao:hover, .barra-pacote .botao:hover { background: #67E8F9; border-color: #67E8F9; }
+/* A fiada: a fileira de blocos chanfrados que separa as partes da página, como as fileiras do iglu. Os blocos são uma
+   máscara (o desenho de um bloco, repetido); o vão entre eles mostra o fundo, como a junta. */
+.topo::after, .secao::before, .rodape::before {
+  content: ""; position: absolute; left: 0; right: 0; height: 22px; pointer-events: none;
+  background: linear-gradient(var(--luz) 0 3px, var(--bloco) 3px, var(--bloco-fundo) 14px, var(--sombra) 14px);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 22' preserveAspectRatio='none'%3E%3Cpath d='M8 0h104l4 4v14l-4 4H8l-4-4V4z'/%3E%3C/svg%3E") var(--fiada-x, 0) 0 / var(--fiada, 120px) 100% repeat-x;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 22' preserveAspectRatio='none'%3E%3Cpath d='M8 0h104l4 4v14l-4 4H8l-4-4V4z'/%3E%3C/svg%3E") var(--fiada-x, 0) 0 / var(--fiada, 120px) 100% repeat-x;
+}
 
-/* Topo */
-.topo { background: var(--grafite); color: #FFFFFF; position: sticky; top: 0; z-index: 20; }
-.topo-dentro { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
-.marca { display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-weight: 800; font-size: 1.25rem; white-space: nowrap; min-height: 44px; }
-.marca img { border-radius: 12px; }
-.marca b { color: #67E8F9; font-weight: 900; }
+/* ===== Topo: neve, com a fiada embaixo ===== */
+.topo { position: sticky; top: 0; z-index: 20; background: var(--neve); padding-bottom: 10px; }
+.topo::after { bottom: 0; height: 10px; --fiada: 54px; background: linear-gradient(var(--luz) 0 2px, var(--bloco) 2px, var(--bloco-fundo) 6px, var(--sombra) 6px); }
+.topo-dentro { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 8px; padding-bottom: 8px; }
+.marca { display: flex; align-items: center; gap: 10px; color: var(--tinta); text-decoration: none; font-family: "Chakra Petch", sans-serif; font-weight: 700; font-size: 1.35rem; white-space: nowrap; min-height: 44px; }
+.marca b { color: var(--cor); }
+.marca-domo { flex: none; fill: var(--cor); stroke: var(--neve); stroke-width: 14; stroke-linejoin: round; }
 .menu { display: flex; align-items: center; gap: 14px; }
 .menu-links { display: flex; align-items: center; gap: 22px; }
-.menu-links a:not(.botao) { display: inline-flex; align-items: center; min-height: 44px; color: #E2E8F0; text-decoration: none; font-weight: 700; font-size: .95rem; white-space: nowrap; transition: color .2s ease-out; }
-.menu-links a:not(.botao):hover { color: #FFFFFF; }
+.menu-links a:not(.botao) { display: inline-flex; align-items: center; min-height: 44px; color: var(--tinta); text-decoration: none; font-weight: 600; font-size: .98rem; white-space: nowrap; background: linear-gradient(var(--cor), var(--cor)) left calc(100% - 8px) / 0 3px no-repeat; transition: background-size .2s ease-out, color .2s ease-out; }
+.menu-links a:not(.botao):hover { color: var(--cor-forte); background-size: 100% 3px; }
 .menu-links-orcamento, .menu-abrir { display: none; }
 .menu-orcamento { white-space: nowrap; }
 .rotulo-curto { display: none; }
-.luz, .menu-abrir { align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border-radius: 12px; border: 2px solid rgba(255, 255, 255, .25); background: transparent; color: #FFFFFF; cursor: pointer; transition: background-color .2s ease-out, transform .15s ease-out; }
+.luz, .menu-abrir { --c: 5px; align-items: center; justify-content: center; width: 46px; height: 46px; padding: 0 0 4px; border: 0; background: none; color: var(--tinta); cursor: pointer; transition: transform .15s ease-out; }
 .luz { display: inline-flex; }
-.luz:hover, .menu-abrir:hover { background: rgba(255, 255, 255, .12); }
-.luz:active, .menu-abrir:active { transform: scale(.94); }
 .luz svg, .menu-abrir svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .icone-lua { display: none; }
 :root[data-theme="dark"] .icone-sol { display: none; }
@@ -94,28 +149,34 @@ h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; }
   :root:not([data-theme="light"]) .icone-lua { display: inline; }
 }
 
-/* Abertura: grafite liso com o fio de gelo embaixo */
-.abertura { background: var(--grafite); color: #FFFFFF; padding: 40px 0 36px; border-bottom: 6px solid #22D3EE; }
-.abertura-dentro { display: grid; gap: 28px; }
+/* ===== Abertura: o céu polar, os flocos (as estrelas, à noite), o chão de neve e o iglu ===== */
+.abertura { position: relative; overflow: hidden; padding: 44px 0 0; background: linear-gradient(180deg, var(--ceu-alto), var(--ceu-baixo) 78%); }
+.abertura::before { content: ""; position: absolute; inset: 0 0 30% 0; pointer-events: none;
+  background-image: radial-gradient(circle, var(--ponto) 0 1.6px, transparent 2.2px), radial-gradient(circle, var(--ponto) 0 1px, transparent 1.5px), radial-gradient(circle, var(--ponto) 0 1.2px, transparent 1.7px), radial-gradient(circle, var(--ponto) 0 .8px, transparent 1.3px);
+  background-size: 293px 241px, 211px 173px, 157px 131px, 113px 97px; background-position: 41px 27px, 167px 89px, 23px 61px, 79px 13px; opacity: .6; }
+/* o chão de neve, em que o iglu e o Linu pisam */
+.abertura::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: 0; height: 74px; border-radius: 50% 50% 0 0 / 100% 100% 0 0; background: linear-gradient(var(--chao) 40%, var(--chao-sombra)); box-shadow: inset 0 3px 0 var(--luz); }
+.abertura-dentro { position: relative; z-index: 1; display: grid; gap: 24px; }
 .abertura-dentro > * { min-width: 0; }
-.sobretitulo { margin: 0 0 8px; color: #67E8F9; font-weight: 800; font-size: 1rem; }
-.abertura h1 { font-size: clamp(2rem, 7vw, 3.3rem); font-weight: 900; }
-.destaque { color: #67E8F9; }
-.abertura-sub { color: #E2E8F0; max-width: 60ch; margin: 0 0 24px; }
+.sobretitulo { margin: 0 0 10px; color: var(--cor-forte); font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+/* um bloquinho antes do sobretítulo */
+.sobretitulo::before { content: ""; flex: none; width: 22px; height: 14px; background: var(--cor); box-shadow: inset 0 -4px 0 var(--cor-sombra), inset 0 2px 0 rgba(255, 255, 255, .3); clip-path: polygon(3px 0, calc(100% - 3px) 0, 100% 3px, 100% calc(100% - 3px), calc(100% - 3px) 100%, 3px 100%, 0 calc(100% - 3px), 0 3px); }
+.abertura h1 { font-size: clamp(2.15rem, 7.6vw, 3.6rem); line-height: 1.06; }
+/* o "pronto antes" é um bloco assentado no meio da frase */
+.destaque { padding: 0 .18em .04em; background: var(--cor); color: var(--cor-texto); box-shadow: inset 0 -.13em 0 var(--cor-sombra); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.abertura-sub { color: var(--tinta-suave); max-width: 58ch; margin: 0 0 24px; font-size: 1.05rem; }
 .botoes { display: flex; flex-wrap: wrap; gap: 12px; }
-.abertura .botao-linha { color: #FFFFFF; border-color: rgba(255, 255, 255, .55); }
-.abertura .botao-linha:hover { background: rgba(255, 255, 255, .12); }
 
-/* O iglu do Linu: a assinatura do Linu Seguro. 1,5 vez o tamanho original no celular, 2 vezes no tablet e no
-   computador, com o Linu da chave no tamanho original (176 de 408 px); a luz da porta é um desenho por cima, do
-   mesmo tamanho do iglu, que acende no modo escuro */
-.cena { margin: 0; justify-self: center; width: min(100%, 306px); }
-.cena-quadro { position: relative; padding-bottom: 6%; }
-.cena-iglu, .cena-luz { width: 100%; }
-.cena-luz { position: absolute; top: 0; left: 0; opacity: 0; transition: opacity .25s ease-in; }
-.cena-brilho { position: absolute; left: 68%; top: 48%; width: 32%; height: 42%; border-radius: 50%; background: radial-gradient(closest-side, rgba(253, 186, 116, .38), rgba(253, 186, 116, 0)); opacity: 0; pointer-events: none; transition: opacity .25s ease-in; }
-.cena-linu { position: absolute; left: 4%; bottom: 0; width: 43.14%; transform-origin: bottom center; }
-.cena figcaption { margin-top: 10px; color: #CBD5E1; font-size: .9rem; text-align: center; }
+/* O iglu (2 vezes o desenho, 408 x 342) e o Linu (1 vez, 176 x 190): pixel art sempre em escala inteira. No celular,
+   o palco corta a beira esquerda do iglu em vez de encolher o desenho. A luz da porta é um desenho por cima, do mesmo
+   tamanho do iglu, que acende no modo escuro. */
+.cena { margin: 0; justify-self: center; width: 100%; max-width: 448px; position: relative; padding-bottom: 62px; }
+.cena-palco { position: relative; height: 362px; overflow: hidden; }
+.cena-iglu, .cena-luz { position: absolute; right: 0; bottom: 18px; width: 408px; height: 342px; }
+.cena-luz { opacity: 0; transition: opacity .25s ease-in; }
+.cena-brilho { position: absolute; right: 0; bottom: 52px; width: 130px; height: 144px; border-radius: 50%; background: radial-gradient(closest-side, rgba(253, 186, 116, .4), rgba(253, 186, 116, 0)); opacity: 0; pointer-events: none; transition: opacity .25s ease-in; }
+.cena-linu { position: absolute; left: 0; bottom: 0; width: 176px; height: 190px; transform-origin: bottom center; }
+.cena figcaption { position: absolute; left: 0; right: 0; bottom: 8px; z-index: 1; margin: 0; line-height: 1.35; color: var(--tinta-suave); font-size: .9rem; text-align: center; }
 :root[data-theme="dark"] .cena-luz, :root[data-theme="dark"] .cena-brilho { opacity: 1; transition-timing-function: ease-out; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cena-luz, :root:not([data-theme="light"]) .cena-brilho { opacity: 1; } }
 /* ao trocar o tema: a luz acende tremendo ou apaga, e o Linu dá um pulinho; só ao toque (js/seguro.js) */
@@ -124,259 +185,323 @@ h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; }
 .acendeu .cena-linu, .apagou .cena-linu { animation: pulinho .6s ease-out; }
 @keyframes acender { 0% { opacity: 0; } 25% { opacity: .85; } 40% { opacity: .25; } 60%, 100% { opacity: 1; } }
 @keyframes apagar { 0% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes pulinho { 0% { transform: none; } 20% { transform: scale(1.04, .94); } 45% { transform: translateY(-14%); } 70% { transform: scale(1.05, .95); } 85% { transform: scale(.98, 1.02); } 100% { transform: none; } }
-/* o cartão do canto, quando o iglu está fora da tela */
-.cena-cartao { position: fixed; top: 76px; right: 12px; z-index: 25; width: 150px; padding: 10px 10px 4px; border-radius: 14px; background: var(--grafite); box-shadow: 0 14px 30px -12px rgba(0, 0, 0, .55); opacity: 0; transform: translateY(-8px) scale(.96); pointer-events: none; transition: opacity .2s ease-in, transform .2s ease-in; }
+@keyframes pulinho { 0% { transform: none; animation-timing-function: ease-out; } 40% { transform: translateY(-26px); animation-timing-function: ease-in; } 75% { transform: none; animation-timing-function: ease-out; } 87% { transform: translateY(-6px); animation-timing-function: ease-in; } 100% { transform: none; } }
+/* o bloco do canto, quando o iglu está fora da tela: o iglu em 1 vez (204 x 171), sem o Linu */
+.cena-cartao { position: fixed; top: 84px; right: 12px; z-index: 25; padding: 12px 12px 16px; background: linear-gradient(var(--ceu-alto), var(--ceu-baixo)); box-shadow: inset 0 -6px 0 var(--sombra), inset 0 0 0 1px var(--aresta); clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px); opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity .2s ease-in, transform .2s ease-in; }
 .cena-cartao.aberto { opacity: 1; transform: none; transition: opacity .2s ease-out, transform .2s ease-out; }
+.cena-cartao .cena-palco { width: 204px; height: 171px; }
+.cena-cartao .cena-iglu, .cena-cartao .cena-luz { width: 204px; height: 171px; }
+.cena-cartao .cena-iglu, .cena-cartao .cena-luz { bottom: 0; }
+.cena-cartao .cena-brilho { bottom: 17px; width: 65px; height: 72px; }
+.cena-cartao .cena-linu { display: none; }
 
-/* Seções */
-.secao { padding: 56px 0; }
+/* ===== Seções: neve e gelo alternados, cada uma começando numa fiada ===== */
+.secao { position: relative; padding: 62px 0 56px; }
+.secao::before { top: 0; }
 .secao-gelo { background: var(--gelo); }
-.secao-sub { color: var(--tinta-suave); max-width: 65ch; margin: 0 0 24px; }
+.secao-gelo::before { --fiada-x: 60px; }
+.secao h2 { margin-top: 6px; }
+.secao-sub { color: var(--tinta-suave); max-width: 64ch; margin: 0 0 24px; }
 
-/* Ícones desenhados (o sprite fica no começo do <body>) */
-.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
-.icone { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-/* Raio-X: no celular, as perguntas em lista e o iglu embaixo; tablet, as perguntas em 2 colunas; computador, as
-   perguntas à esquerda e o iglu parado à direita */
+/* ===== Raio-X: as perguntas são blocos; o resultado é a cúpula, que se monta bloco a bloco ===== */
 :root:not(.js) .raiox { display: none; }
 .raiox-grade { display: grid; gap: 20px; }
 .raiox-grade > * { min-width: 0; }
-.perguntas { display: grid; gap: 10px; }
-.pergunta { margin: 0; padding: 12px 14px; border-radius: 14px; border: 2px solid var(--linha); background: var(--cartao); display: flex; flex-wrap: wrap; align-items: center; gap: 8px; transition: border-color .2s ease-out; }
-.pergunta:has(input:checked) { border-color: var(--cor-clara); }
-.pergunta legend { float: left; width: 100%; padding: 0; margin-bottom: 4px; font-weight: 700; }
-.pergunta legend small { display: block; color: var(--tinta-suave); font-size: .88rem; font-weight: 600; }
+.perguntas { display: grid; gap: var(--jw); align-content: start; }
+.pergunta { --c: 9px; margin: 0; padding: 12px 14px 18px; border: 0; min-inline-size: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pergunta legend { float: left; width: 100%; padding: 0; margin-bottom: 4px; font-weight: 600; line-height: 1.4; }
+.pergunta legend small { display: block; color: var(--tinta-suave); font-size: .88rem; font-weight: 500; }
+.pergunta-bloco { display: flex; align-items: center; gap: 7px; margin-bottom: 2px; font-family: "Chakra Petch", sans-serif; font-weight: 700; font-size: .85rem; color: var(--cor-forte); }
+.pergunta-bloco::before { content: ""; width: 14px; height: 9px; border: 2px dashed var(--cor); transition: background-color .2s ease-out, border-color .2s ease-out; }
+.pergunta.posta .pergunta-bloco::before { border-style: solid; background: var(--cor); }
 .pergunta label { position: relative; }
 .pergunta input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.pergunta span { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 72px; padding: 0 16px; border-radius: 999px; border: 2px solid var(--linha); font-weight: 800; cursor: pointer; transition: background-color .2s ease-out, border-color .2s ease-out, color .2s ease-out, transform .15s ease-out; }
-.pergunta span:hover { border-color: var(--cor); }
-.pergunta label:active span { transform: scale(.95); }
-.pergunta input:checked + span { background: var(--cor); border-color: var(--cor); color: var(--cor-texto); }
-.pergunta input:focus-visible + span { outline: 3px solid var(--azul); outline-offset: 3px; }
-.raiox-resultado { display: grid; gap: 10px; align-content: start; padding: 18px; border-radius: var(--raio); background: var(--grafite); color: #E2E8F0; }
-/* o iglu que se monta: a silhueta apagada mostra o que falta; o iglu de verdade aparece de baixo para cima, um
-   oitavo por bloco no lugar */
-.raiox-iglu { position: relative; justify-self: center; width: min(100%, 306px); margin-bottom: 4px; }
-.raiox-iglu img { width: 100%; }
-.raiox-iglu-sombra { filter: brightness(0) invert(1); opacity: .1; }
-.raiox-iglu-pronto { position: absolute; top: 0; left: 0; clip-path: inset(100% 0 0 0); transition: clip-path .4s var(--entrada); }
-.raiox-iglu-pronto[data-blocos="1"] { clip-path: inset(87.5% 0 0 0); }
-.raiox-iglu-pronto[data-blocos="2"] { clip-path: inset(75% 0 0 0); }
-.raiox-iglu-pronto[data-blocos="3"] { clip-path: inset(62.5% 0 0 0); }
-.raiox-iglu-pronto[data-blocos="4"] { clip-path: inset(50% 0 0 0); }
-.raiox-iglu-pronto[data-blocos="5"] { clip-path: inset(37.5% 0 0 0); }
-.raiox-iglu-pronto[data-blocos="6"] { clip-path: inset(25% 0 0 0); }
-.raiox-iglu-pronto[data-blocos="7"] { clip-path: inset(12.5% 0 0 0); }
-.raiox-iglu-pronto[data-blocos="8"] { clip-path: inset(0 0 0 0); }
-/* o iglu pequeno preso no alto (celular e tablet) */
-.raiox-mini { position: sticky; top: 72px; z-index: 4; display: flex; align-items: center; gap: 12px; padding: 8px 14px; border-radius: 14px; background: var(--grafite); color: #E2E8F0; box-shadow: 0 10px 24px -16px rgba(0, 0, 0, .6); font-weight: 800; }
-.raiox-mini [data-raiox-mini] { color: #67E8F9; }
-.raiox-mini-iglu { position: relative; flex: none; width: 68px; }
-.raiox-mini-iglu img { width: 100%; }
-.raiox-contagem { margin: 0; color: #CBD5E1; font-size: .95rem; text-align: center; }
-.raiox-contagem b { color: #67E8F9; font-size: 1.15rem; font-weight: 900; }
-.raiox-vazio { margin: 0; color: #CBD5E1; }
-.raiox-lista { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-.raiox-lista li { display: grid; gap: 2px; padding-left: 14px; border-left: 3px solid #22D3EE; color: #CBD5E1; font-size: .95rem; animation: abrir .2s ease-out; }
-.raiox-lista b { color: #FFFFFF; }
-.raiox-site { margin: 0; color: #CBD5E1; }
-.raiox-site a { color: #7DD3FC; }
-.raiox-total { margin: 0; color: #67E8F9; font-weight: 800; }
-.raiox-resultado .botao { justify-self: start; }
+.pergunta label > span { --c: 5px; --b-cima: var(--neve); --b-baixo: var(--neve); --b-sh: 4px;
+  display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 76px; padding: 0 16px 3px; font-weight: 700; cursor: pointer; transition: transform .15s ease-out, color .2s ease-out; }
+.pergunta input:checked + span { --b-cima: var(--cor); --b-baixo: var(--cor); --b-luz: rgba(255, 255, 255, .28); --b-sombra: var(--cor-sombra); --b-aresta: transparent; color: var(--cor-texto); }
+.pergunta input:focus-visible + span { outline: 3px solid var(--foco); outline-offset: 3px; }
+/* a pergunta com o dedo em cima acende o seu lugar na cúpula (js/seguro.js, bloco 8) */
 
-/* Serviços: no celular, a faixa de áreas rola de lado e os cartões ficam compactos */
+.raiox-resultado { --c: 14px; position: relative; display: grid; gap: 12px; align-content: start; padding: 18px 18px 22px; background: linear-gradient(var(--ceu-alto), var(--ceu-baixo)); box-shadow: inset 0 0 0 1px var(--aresta), inset 0 -6px 0 var(--sombra); clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c)); }
+.raiox-ceu { justify-self: center; width: 100%; max-width: 360px; }
+/* a cúpula: o lugar vazio é tracejado; o bloco assentado ganha o gelo, a luz em cima e a sombra embaixo; quem
+   respondeu "não" vê o lugar marcado na cor do Iglu */
+.raiox-domo { display: block; width: 100%; height: auto; overflow: visible; }
+.rx-chao { fill: var(--chao); }
+.rx-forma { fill: var(--ceu-baixo); fill-opacity: .55; stroke: var(--tinta-suave); stroke-opacity: .45; stroke-width: 2; stroke-dasharray: 6 5; stroke-linejoin: round; transition: fill .25s ease-out, stroke .25s ease-out; }
+/* o gelo do bloco assentado: luz em cima, sombra embaixo (o gradiente rx-gelo, no próprio SVG) */
+.rx-g1 { stop-color: var(--rx-luz); }
+.rx-g2, .rx-g3 { stop-color: var(--bloco); }
+.rx-g3 { stop-color: var(--bloco-fundo); }
+.rx-g4 { stop-color: var(--sombra); }
+.rx-bloco text { font-family: "Red Hat Text", sans-serif; font-size: 13px; font-weight: 600; fill: var(--tinta-suave); text-anchor: middle; dominant-baseline: middle; transition: fill .25s ease-out; }
+.rx-bloco { transform-box: fill-box; transform-origin: center bottom; }
+.rx-bloco.posto .rx-forma { fill: url(#rx-gelo); fill-opacity: 1; stroke: var(--ceu-baixo); stroke-opacity: 1; stroke-width: 5; stroke-dasharray: none; }
+.rx-bloco.posto text { fill: var(--cor-forte); font-weight: 700; }
+.rx-bloco.falta .rx-forma { stroke: var(--cor); stroke-opacity: 1; stroke-width: 2.5; }
+.rx-bloco.falta text { fill: var(--cor-forte); }
+.rx-bloco.em-foco .rx-forma { stroke: var(--foco); stroke-opacity: 1; stroke-width: 3; stroke-dasharray: none; }
+.rx-bloco.assentou { animation: assentar .38s var(--entrada); }
+@keyframes assentar { 0% { transform: translateY(-22px); opacity: .2; } 70% { transform: translateY(2px); opacity: 1; } 100% { transform: none; } }
+.rx-porta { fill: var(--porta); transition: fill .4s ease-out; }
+/* com os oito blocos no lugar, a porta acende */
+.raiox-domo.completo .rx-porta { fill: #F59E0B; }
+.raiox-contagem { margin: 0; color: var(--tinta-suave); font-size: .95rem; text-align: center; }
+.raiox-contagem b { display: block; color: var(--tinta); font-family: "Chakra Petch", sans-serif; font-size: 1.5rem; line-height: 1.2; }
+.raiox-vazio { margin: 0; color: var(--tinta-suave); }
+.raiox-lista { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.raiox-lista li { display: grid; gap: 2px; padding: 2px 0 2px 14px; border-left: 4px solid var(--cor); color: var(--tinta-suave); font-size: .95rem; animation: abrir .2s ease-out; }
+.raiox-lista b { color: var(--tinta); }
+.raiox-site { margin: 0; color: var(--tinta-suave); }
+.raiox-total { margin: 0; color: var(--cor-forte); font-weight: 700; }
+.raiox-resultado .botao { justify-self: start; }
+/* a cúpula pequena presa no alto (celular e tablet) */
+.raiox-mini { position: sticky; top: 76px; z-index: 4; display: flex; align-items: center; gap: 12px; padding: 8px 14px 12px; background: var(--bloco); box-shadow: inset 0 0 0 1px var(--aresta), inset 0 -5px 0 var(--sombra); clip-path: polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px); font-family: "Chakra Petch", sans-serif; font-weight: 700; color: var(--cor-forte); }
+.raiox-domo-mini { flex: none; width: 66px; }
+.raiox-domo-mini .rx-forma { fill: var(--gelo); fill-opacity: 1; stroke: var(--bloco); stroke-width: 14; stroke-dasharray: none; stroke-opacity: 1; }
+.raiox-domo-mini .rx-bloco.posto .rx-forma { fill: var(--cor); stroke: var(--bloco); stroke-width: 14; }
+.raiox-domo-mini .rx-bloco.falta .rx-forma { fill: var(--cor-clara); stroke: var(--bloco); stroke-width: 14; }
+.raiox-domo-mini .rx-chao { fill: var(--gelo); }
+
+/* ===== Serviços: a parede ===== */
 .servicos-grade { display: grid; gap: 18px; }
 .areas { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; margin: 0 -16px; padding: 4px 16px 10px; scrollbar-width: none; }
 .areas::-webkit-scrollbar { display: none; }
-.area { flex: none; scroll-snap-align: start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 2px solid var(--linha); background: var(--cartao); color: var(--tinta); font: inherit; font-weight: 700; font-size: .95rem; cursor: pointer; transition: background-color .2s ease-out, border-color .2s ease-out, color .2s ease-out, transform .15s ease-out; }
-.area:hover { border-color: var(--cor); }
-.area:active { transform: scale(.96); }
-.area[aria-pressed="true"] { background: var(--cor); border-color: var(--cor); color: var(--cor-texto); }
-.area-conta { font-size: .8rem; opacity: .75; }
+.area { --c: 5px; --b-sh: 4px; flex: none; scroll-snap-align: start; display: inline-flex; align-items: center; gap: 6px; min-height: 46px; padding: 0 14px 3px; border: 0; background: none; color: var(--tinta); font: inherit; font-weight: 600; font-size: .95rem; cursor: pointer; transition: transform .15s ease-out; }
+.area[aria-pressed="true"] { --b-cima: var(--cor); --b-baixo: var(--cor); --b-luz: rgba(255, 255, 255, .28); --b-sombra: var(--cor-sombra); --b-aresta: transparent; color: var(--cor-texto); font-weight: 700; }
+.area-conta { font-size: .8rem; opacity: .8; }
 .area .icone { width: 18px; height: 18px; }
 .pacote { display: none; }
 /* no celular e no tablet, a coluna do lado se desfaz, para a faixa de áreas ficar presa em toda a lista */
 @media (max-width: 1099px) { .servicos-lado { display: contents; } }
+.servicos-nota { margin: -12px 0 20px; max-width: 64ch; color: var(--tinta-suave); font-size: .9rem; }
 
-.servicos { display: grid; gap: 10px; }
-.servico { position: relative; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "area botao" "titulo botao" "texto texto" "preco preco"; column-gap: 12px; padding: 14px 16px; border-radius: var(--raio); background: var(--cartao); border: 2px solid var(--linha); transition: border-color .2s ease-out, box-shadow .2s ease-out, opacity .22s var(--entrada), transform .22s var(--entrada); }
-.servico.escolhido { border-color: var(--cor); }
-.servico.chegando { opacity: 0; transform: translateY(8px); }
-.servico-area { grid-area: area; display: inline-flex; align-items: center; gap: 6px; font-size: .88rem; font-weight: 800; color: var(--cor); }
+/* Os blocos de serviço. No celular, uma coluna de blocos, um pouco para a esquerda e um pouco para a direita; no tablet
+   e no computador, fileiras desencontradas meio bloco, com os meios-blocos das pontas (o ::after, só desenho). */
+.servicos { display: grid; gap: var(--jw); }
+.servico { --c: 10px; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "area botao" "titulo botao" "texto texto" "preco preco"; column-gap: 12px; padding: 14px 16px 20px; transition: opacity .22s var(--entrada), transform .22s var(--entrada); }
+.servico::after { display: none; --b-cima: var(--gelo); --b-baixo: var(--sombra-lado); --b-aresta: var(--junta); }
+.servico:nth-child(odd of .servico:not([hidden])) { margin-right: 22px; }
+.servico:nth-child(even of .servico:not([hidden])) { margin-left: 22px; }
+.servico.chegando { opacity: 0; transform: translateY(-10px); }
+.servico-area { grid-area: area; display: inline-flex; align-items: center; gap: 6px; font-size: .88rem; font-weight: 700; color: var(--cor-forte); }
 .servico-area .icone { width: 20px; height: 20px; }
-.servico h3 { grid-area: titulo; font-size: 1.05rem; margin: 2px 0 4px; }
+.servico h3 { grid-area: titulo; font-size: 1.18rem; margin: 4px 0 4px; }
 .servico p { grid-area: texto; margin: 0; color: var(--tinta-suave); font-size: .95rem; }
-.servico .servico-preco { grid-area: preco; margin-top: 8px; color: var(--tinta); font-size: .95rem; }
-.servico-preco b { font-weight: 900; }
+.servico .servico-preco { grid-area: preco; margin-top: 10px; color: var(--tinta); font-size: .95rem; }
+.servico-preco b { font-family: "Chakra Petch", sans-serif; font-size: 1.1rem; }
 .servico-preco span { color: var(--tinta-suave); font-size: .88rem; }
-.servicos-nota { margin: -12px 0 20px; max-width: 65ch; color: var(--tinta-suave); font-size: .9rem; }
-.adicionar { grid-area: botao; align-self: start; min-height: 44px; min-width: 44px; padding: 0 14px; border-radius: 999px; border: 2px solid var(--cor); background: transparent; color: var(--cor); font: inherit; font-weight: 800; font-size: .9rem; cursor: pointer; white-space: nowrap; transition: background-color .2s ease-out, color .2s ease-out, transform .15s ease-out; }
-.adicionar:hover { background: var(--cor-clara); }
-.adicionar:active { transform: scale(.95); }
-.adicionar[aria-pressed="true"] { background: var(--cor); color: var(--cor-texto); }
-/* sem JavaScript, nada para adicionar: os cartões ficam só de leitura */
+.adicionar { --c: 5px; --b-sh: 4px; --b-cima: var(--neve); --b-baixo: var(--neve); grid-area: botao; align-self: start; min-height: 44px; min-width: 44px; padding: 0 14px 3px; border: 0; background: none; color: var(--cor-forte); font: inherit; font-weight: 700; font-size: .92rem; cursor: pointer; white-space: nowrap; transition: transform .15s ease-out; }
+.adicionar[aria-pressed="true"] { --b-cima: var(--cor); --b-baixo: var(--cor); --b-luz: rgba(255, 255, 255, .28); --b-sombra: var(--cor-sombra); --b-aresta: transparent; color: var(--cor-texto); }
+/* sem JavaScript, nada para adicionar: os blocos ficam só de leitura */
 :root:not(.js) .adicionar { display: none; }
 
-/* Pacotes prontos: no celular, uma faixa que rola de lado */
-.pacotes { display: grid; grid-auto-flow: column; grid-auto-columns: 82%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 4px 16px 12px; scrollbar-width: thin; }
-.pacote-pronto { scroll-snap-align: start; display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: var(--raio); background: var(--cartao); border: 2px solid var(--linha); }
-.pacote-pronto p { margin: 0; color: var(--tinta-suave); }
-.pacote-pronto .pacote-nome { color: var(--tinta); font-size: 1.35rem; font-weight: 900; }
-.pacote-pronto ul { margin: 0; padding-left: 20px; flex: 1; }
-.pacote-pronto li { margin: 2px 0; }
+/* ===== Pacotes prontos: cada pacote é uma parede, um bloco por serviço, subindo do chão ===== */
+.pacotes { display: grid; grid-auto-flow: column; grid-auto-columns: 84%; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 16px; margin: 0 -16px; padding: 4px 16px 14px; scrollbar-width: thin; }
+.pacote-pronto { scroll-snap-align: start; display: flex; flex-direction: column; gap: 10px; }
+.pacote-pronto > p { margin: 0; color: var(--tinta-suave); }
+.pacote-pronto .pacote-nome { color: var(--tinta); font-family: "Chakra Petch", sans-serif; font-size: 1.45rem; font-weight: 700; line-height: 1.2; }
+.pacote-selo { display: inline-block; vertical-align: middle; margin-left: 4px; padding: 1px 8px 3px; background: var(--cor); color: var(--cor-texto); box-shadow: inset 0 -3px 0 var(--cor-sombra); font-family: "Red Hat Text", sans-serif; font-size: .78rem; font-weight: 700; }
+.parede { flex: 1; display: flex; flex-direction: column-reverse; justify-content: flex-start; gap: 6px; margin: 6px 0 0; padding: 0 0 6px; list-style: none; border-bottom: 5px solid var(--junta); }
+.parede li { --c: 5px; --b-sh: 5px; padding: 7px 12px 11px; font-size: .9rem; font-weight: 600; line-height: 1.3; }
+.parede li:nth-child(odd) { margin-right: 18px; }
+.parede li:nth-child(even) { margin-left: 18px; }
+.pacote-pronto .pacote-preco { min-height: 1.6em; color: var(--tinta); font-weight: 600; }
+.pacote-preco b { font-family: "Chakra Petch", sans-serif; font-size: 1.15rem; }
 .pacote-pronto .botao { align-self: flex-start; }
-.pacote-pronto .pacote-preco { color: var(--tinta); font-weight: 800; }
-.pacote-pronto-destaque { border-color: var(--cor); box-shadow: 0 10px 30px -18px var(--cor); }
-.pacote-pronto-familia { background: transparent; border-style: dashed; }
+.pacote-pronto-familia { padding: 18px; border: 2px dashed var(--sombra); }
+.pacote-pronto-familia ul { flex: 1; margin: 0; padding-left: 20px; color: var(--tinta-suave); }
+.pacote-pronto-familia li { margin: 3px 0; }
 :root:not(.js) [data-escolher-pacote] { display: none; }
 
-/* Como funciona: cada etapa é um bloco de gelo, assentado um depois do outro */
-.passos { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
-.passos li { display: grid; grid-template-columns: 64px 1fr; column-gap: 16px; align-items: start; }
-/* o bloco de gelo: a borda do iglu, o brilho em cima e a sombra embaixo, como os blocos do desenho */
-.passo-bloco { grid-row: 1 / span 2; position: relative; display: grid; place-items: center; height: 48px; margin-top: 2px; border-radius: 6px; border: 2px solid var(--cor); background: var(--cor-clara); box-shadow: inset 0 -6px 0 rgba(14, 116, 144, .22); color: var(--cor-forte); font-size: 1.3rem; font-weight: 900; }
-.passo-bloco::before { content: ""; position: absolute; left: 7px; right: 40%; top: 6px; height: 3px; border-radius: 2px; background: #FFFFFF; opacity: .75; }
-:root[data-theme="dark"] .passo-bloco { box-shadow: inset 0 -6px 0 rgba(0, 0, 0, .3); }
-:root[data-theme="dark"] .passo-bloco::before { opacity: .18; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .passo-bloco { box-shadow: inset 0 -6px 0 rgba(0, 0, 0, .3); }
-  :root:not([data-theme="light"]) .passo-bloco::before { opacity: .18; }
-}
-.passos b { font-size: 1.1rem; }
+/* ===== Como funciona: uma escada de blocos ===== */
+.passos { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--jw); }
+.passos li { --c: 10px; display: grid; grid-template-columns: 48px 1fr; column-gap: 14px; align-items: start; padding: 16px 16px 22px; }
+.passos li:nth-child(odd) { margin-right: 22px; }
+.passos li:nth-child(even) { margin-left: 22px; }
+.passo-numero { grid-row: 1 / span 2; font-family: "Chakra Petch", sans-serif; font-size: 2.6rem; font-weight: 700; line-height: 1; color: var(--cor); }
+.passos b { font-family: "Chakra Petch", sans-serif; font-size: 1.2rem; }
 .passos span:last-child { color: var(--tinta-suave); }
 
-/* Dúvidas: acordeão com transição */
-.duvidas { display: grid; gap: 10px; }
-.duvidas details { border-radius: 14px; background: var(--cartao); border: 2px solid var(--linha); transition: border-color .2s ease-out; }
-.duvidas details[open] { border-color: var(--cor); }
-.duvidas summary { min-height: 52px; padding: 12px 48px 12px 16px; font-weight: 800; cursor: pointer; list-style: none; position: relative; }
+/* ===== Dúvidas: cada pergunta é um bloco que abre ===== */
+.duvidas { display: grid; gap: var(--jw); }
+.duvidas details { --c: 9px; }
+.duvidas summary { min-height: 54px; padding: 14px 52px 18px 16px; font-weight: 700; cursor: pointer; list-style: none; position: relative; }
 .duvidas summary::-webkit-details-marker { display: none; }
-.duvidas summary::after { content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 1.4rem; color: var(--cor); transition: transform .2s ease-out; }
-.duvidas details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
-.duvidas details p { margin: 0; padding: 0 16px 16px; color: var(--tinta-suave); }
+.duvidas summary::after { content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-55%); font-family: "Chakra Petch", sans-serif; font-size: 1.6rem; color: var(--cor); transition: transform .2s ease-out; }
+.duvidas details[open] summary { padding-bottom: 6px; }
+.duvidas details[open] summary::after { transform: translateY(-55%) rotate(45deg); }
+.duvidas details p { margin: 0; padding: 0 16px 20px; color: var(--tinta-suave); }
 .duvidas details[open] p { animation: abrir .2s ease-out; }
 @keyframes abrir { from { opacity: 0; transform: translateY(-6px); } }
 
-/* Contato */
-.contato { background: var(--grafite); color: #FFFFFF; }
+/* ===== Contato: o formulário é o bloco grande da porta ===== */
 .contato-dentro { display: grid; gap: 24px; }
-.contato-texto p { color: #CBD5E1; }
-.contato-canais { font-weight: 700; }
-.contato-texto .contato-aviso { padding-left: 12px; border-left: 3px solid #22D3EE; color: #E2E8F0; font-weight: 700; }
-.formulario { display: grid; gap: 14px; padding: 20px; border-radius: var(--raio); background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); }
+.contato-texto p { color: var(--tinta-suave); }
+.contato-canais { font-weight: 700; color: var(--tinta) !important; }
+.contato-texto .contato-aviso { padding: 4px 0 4px 14px; border-left: 4px solid var(--cor); color: var(--tinta); font-weight: 700; }
+.contato-linu { display: none; width: 172px; height: 190px; margin-top: 28px; }
+.formulario { --c: 12px; display: grid; gap: 14px; padding: 22px 20px 28px; }
 .campo { display: grid; gap: 4px; }
-.campo label, .campo-rotulo { font-weight: 800; font-size: .95rem; }
-.opcional { font-weight: 600; color: #CBD5E1; }
-.campo input, .campo textarea { width: 100%; min-height: 48px; padding: 10px 14px; border-radius: 12px; border: 2px solid rgba(255, 255, 255, .25); background: #0F172A; color: #FFFFFF; font: inherit; transition: border-color .2s ease-out; }
-.campo input::placeholder, .campo textarea::placeholder { color: #94A3B8; }
-.campo input:focus, .campo textarea:focus { border-color: #7DD3FC; outline: none; }
-.campo [aria-invalid="true"] { border-color: #FCA5A5; }
-.campo-erro { margin: 0; min-height: 1.2em; color: #FCA5A5; font-size: .9rem; font-weight: 700; }
-.formulario-total { margin: 6px 0 0; color: #67E8F9; font-weight: 800; font-size: .95rem; }
-.formulario-pacote { margin: 0; padding: 10px 14px; border-radius: 12px; background: rgba(255, 255, 255, .06); color: #E2E8F0; }
+.campo label, .campo-rotulo { font-weight: 700; font-size: .95rem; }
+.opcional { font-weight: 500; color: var(--tinta-suave); }
+.campo input, .campo textarea { width: 100%; min-height: 48px; padding: 10px 14px; border: 2px solid var(--junta); border-radius: 0; background: var(--neve); box-shadow: inset 0 3px 0 var(--chao-sombra); color: var(--tinta); font: inherit; transition: border-color .2s ease-out; }
+.campo input::placeholder, .campo textarea::placeholder { color: var(--tinta-suave); opacity: 1; }
+.campo input:focus, .campo textarea:focus { border-color: var(--cor); outline: 3px solid var(--foco); outline-offset: 2px; }
+.campo [aria-invalid="true"] { border-color: #B91C1C; }
+.campo-erro { margin: 0; min-height: 1.2em; color: #B91C1C; font-size: .9rem; font-weight: 700; }
+:root[data-theme="dark"] .campo-erro { color: #FCA5A5; }
+:root[data-theme="dark"] .campo [aria-invalid="true"] { border-color: #FCA5A5; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .campo-erro { color: #FCA5A5; }
+  :root:not([data-theme="light"]) .campo [aria-invalid="true"] { border-color: #FCA5A5; }
+}
+.formulario-total { margin: 6px 0 0; color: var(--cor-forte); font-weight: 700; font-size: .95rem; }
+.formulario-pacote { margin: 0; padding: 10px 14px; background: var(--gelo); border-left: 4px solid var(--junta); }
 .formulario-botoes { display: grid; gap: 10px; }
 
-/* A barra do pacote, presa embaixo (celular e tablet) */
-.barra-pacote { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 15; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 10px 10px 18px; border-radius: 999px; background: var(--grafite); color: #FFFFFF; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .45); font-weight: 800; transition: opacity .2s ease-in, transform .2s ease-in; }
+/* A barra do pacote, presa embaixo (celular e tablet): um bloco de gelo da noite */
+.barra-pacote { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 15; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 10px 14px 16px; background: #0B2230; color: #FFFFFF; box-shadow: inset 0 -5px 0 #04121B, inset 0 2px 0 rgba(165, 243, 252, .25); clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px); font-weight: 700; transition: opacity .2s ease-in, transform .2s ease-in; }
 .barra-pacote.escondida { opacity: 0; transform: translateY(120%); pointer-events: none; }
 .barra-texto { min-width: 0; font-size: .92rem; line-height: 1.3; }
-.barra-pacote .botao { flex: none; white-space: nowrap; }
-body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 90px; }
+.barra-pacote .botao { flex: none; white-space: nowrap; --b-cima: #22D3EE; --b-baixo: #22D3EE; --b-sombra: #0E7490; color: #042F2E; }
+body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 96px; }
 
-/* Rodapé */
-.rodape { background: #111827; color: #CBD5E1; padding: 28px 0; font-size: .95rem; }
+/* ===== Rodapé: o chão, com a fiada em cima ===== */
+.rodape { position: relative; background: var(--rodape); color: #C9DCE5; padding: 46px 0 28px; font-size: .95rem; }
+.rodape::before { top: 0; --bloco: #16364A; --bloco-fundo: #102B3C; --sombra: #061620; --junta: #04101A; --luz: rgba(165, 243, 252, .2); }
 .rodape-dentro { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
 .rodape p { margin: 0; }
-.rodape a { color: #7DD3FC; }
+.rodape a { color: #67E8F9; }
 .rodape-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 22px; }
-.rodape-link, .topo-voltar { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 800; }
+.rodape-link, .topo-voltar { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 700; }
 
 /* Entradas ao rolar (js/seguro.js): só transform e opacity */
 .antes { opacity: 0; transform: translateY(14px); }
-.secao h2, .secao-sub, .servico, .pacote-pronto, .passos li, .duvidas details, .pergunta { transition-property: opacity, transform, border-color, box-shadow; transition-duration: .24s; transition-timing-function: var(--entrada); transition-delay: var(--atraso, 0ms); }
+.secao h2, .secao-sub, .servico, .pacote-pronto, .passos li, .duvidas details, .pergunta { transition-property: opacity, transform; transition-duration: .24s; transition-timing-function: var(--entrada); transition-delay: var(--atraso, 0ms); }
 
 /* ===== Celular (até 699 px): o menu no botão ===== */
 @media (max-width: 699px) {
+  .menu { gap: 8px; }
   .menu-abrir { display: inline-flex; }
   .menu-orcamento { display: none; }
-  .menu-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 16px 16px; background: var(--grafite); border-top: 1px solid rgba(255, 255, 255, .1); opacity: 0; transform: translateY(-8px); visibility: hidden; transition: opacity .15s ease-in, transform .15s ease-in, visibility 0s .15s; }
+  .menu-links { position: absolute; top: calc(100% + 8px); left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 16px 18px; background: var(--neve); box-shadow: inset 0 -6px 0 var(--sombra); opacity: 0; transform: translateY(-8px); visibility: hidden; transition: opacity .15s ease-in, transform .15s ease-in, visibility 0s .15s; }
   .menu-links.aberto { opacity: 1; transform: none; visibility: visible; transition: opacity .2s ease-out, transform .2s ease-out; }
-  .menu-links a:not(.botao) { display: flex; align-items: center; min-height: 48px; font-size: 1.05rem; border-bottom: 1px solid rgba(255, 255, 255, .08); }
-  .menu-links-orcamento { display: inline-flex; margin-top: 12px; }
+  .menu-links a:not(.botao) { display: flex; align-items: center; min-height: 50px; font-size: 1.05rem; border-bottom: 2px solid var(--junta); background: none; }
+  .menu-links-orcamento { display: inline-flex; margin-top: 14px; }
   :root:not(.js) .menu-links { position: static; opacity: 1; visibility: visible; transform: none; }
   :root:not(.js) .menu-abrir { display: none; }
-  .areas { position: sticky; top: 64px; z-index: 5; background: var(--fundo); padding-top: 8px; }
+  .marca { font-size: 1.2rem; gap: 8px; }
+  .areas { position: sticky; top: 72px; z-index: 5; background: var(--neve); padding-top: 8px; }
   .rodape-links { width: 100%; }
 }
 
-/* ===== Tablet (700 a 1099 px): faixa de áreas no alto, cartões em 2 colunas, pacotes em 2 colunas ===== */
+/* ===== Tablet (700 a 1099 px): faixa de áreas no alto, a parede em fileiras de 2, pacotes em 2 colunas ===== */
 @media (min-width: 700px) {
   .dentro { padding: 0 28px; }
-  .dentro.topo-dentro { padding-top: 10px; padding-bottom: 10px; }
-  .abertura { padding: 64px 0 56px; }
-  .cena { width: 408px; }
-  .areas { flex-wrap: wrap; overflow: visible; margin: 0; padding: 10px 0; position: sticky; top: 64px; z-index: 5; background: var(--fundo); }
-  .servicos { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .servico { grid-template-columns: 1fr; grid-template-areas: "area" "titulo" "texto" "preco" "botao"; grid-template-rows: auto auto 1fr auto auto; row-gap: 4px; padding: 18px; }
-  .adicionar { justify-self: start; margin-top: 10px; }
-  .pacotes { grid-auto-flow: row; grid-template-columns: repeat(2, 1fr); overflow: visible; margin: 0; padding: 0; }
+  .abertura { padding-top: 56px; }
+  .areas { flex-wrap: wrap; overflow: visible; margin: 0; padding: 10px 0 12px; position: sticky; top: 72px; z-index: 5; background: var(--neve); }
+  /* a parede: 5 trilhas, cada bloco ocupa 2; a segunda fileira começa meio bloco para dentro */
+  .servicos { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .servico { grid-column: span 2; grid-template-columns: 1fr; grid-template-areas: "area" "titulo" "texto" "preco" "botao"; grid-template-rows: auto auto 1fr auto auto; row-gap: 4px; padding: 18px 18px 24px; }
+  .servico:nth-child(odd of .servico:not([hidden])), .servico:nth-child(even of .servico:not([hidden])) { margin: 0; }
+  .servico:nth-child(4n+3 of .servico:not([hidden])) { grid-column: 2 / span 2; }
+  .servico:nth-child(4n+3 of .servico:not([hidden]))::after { display: block; inset: 0 auto 0 auto; right: calc(100% + var(--jw)); width: calc(50% - var(--jw) / 2); }
+  .servico:nth-child(4n+2 of .servico:not([hidden]))::after { display: block; inset: 0 auto 0 auto; left: calc(100% + var(--jw)); width: calc(50% - var(--jw) / 2); }
+  .adicionar { justify-self: start; margin-top: 12px; }
+  .pacotes { grid-auto-flow: row; grid-template-columns: repeat(2, 1fr); gap: 36px 28px; overflow: visible; margin: 0; padding: 0; }
   .perguntas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .raiox-mini { grid-column: 1 / -1; }
   .duvidas { grid-template-columns: repeat(2, 1fr); align-items: start; }
-  .passos { grid-template-columns: repeat(2, 1fr); column-gap: 28px; row-gap: 24px; }
+  .passos { grid-template-columns: repeat(2, 1fr); }
+  .passos li:nth-child(odd), .passos li:nth-child(even) { margin: 0; }
+  .passos li:nth-child(2n) { margin-top: 40px; }
   .contato-dentro { grid-template-columns: 1fr 1.3fr; align-items: start; }
-  .barra-pacote { left: auto; right: 24px; bottom: 24px; min-width: 360px; }
+  .contato-linu { display: block; }
+  .barra-pacote { left: auto; right: 24px; bottom: 24px; min-width: 380px; }
 }
 /* tablet em pé: o menu mais junto e o botão do orçamento com o rótulo curto, para caber numa linha */
 @media (min-width: 700px) and (max-width: 899px) {
+  /* a abertura: o título na largura toda; embaixo, os botões à esquerda e o iglu à direita */
+  .abertura-dentro { grid-template-columns: minmax(0, 1fr) 448px; grid-template-areas: "sobre sobre" "titulo titulo" "sub sub" "botoes cena"; row-gap: 0; column-gap: 24px; }
+  .abertura-texto { display: contents; }
+  .sobretitulo { grid-area: sobre; }
+  .abertura h1 { grid-area: titulo; }
+  .abertura-sub { grid-area: sub; }
+  .botoes { grid-area: botoes; flex-direction: column; align-items: flex-start; align-self: center; padding-bottom: 60px; }
+  .cena { grid-area: cena; }
   .menu { gap: 10px; }
   .menu-links { gap: 14px; }
   .menu-orcamento .rotulo-largo { display: none; }
   .menu-orcamento .rotulo-curto { display: inline; }
 }
-/* só no tablet: o resultado do Raio-X com o iglu à esquerda e o texto à direita */
+/* só no tablet: o resultado do Raio-X com a cúpula à esquerda e o texto à direita; a abertura com o iglu à direita
+   do texto, embaixo */
 @media (min-width: 700px) and (max-width: 1099px) {
-  .raiox-resultado { grid-template-columns: 240px minmax(0, 1fr); column-gap: 28px; padding: 22px; }
-  .raiox-iglu { grid-row: 1 / span 6; align-self: center; margin: 0; }
-  .raiox-resultado > :not(.raiox-iglu) { grid-column: 2; }
+  .raiox-resultado { grid-template-columns: 300px minmax(0, 1fr); column-gap: 28px; padding: 22px 22px 26px; }
+  .raiox-ceu { grid-row: 1 / span 6; align-self: center; }
+  .raiox-resultado > :not(.raiox-ceu) { grid-column: 2; }
   .raiox-contagem { text-align: left; }
+  .cena { justify-self: end; }
 }
 /* tablet deitado e notebook: a abertura em duas colunas, o texto e o iglu */
 @media (min-width: 900px) {
-  .abertura-dentro { grid-template-columns: minmax(0, 1.15fr) auto; align-items: center; column-gap: 40px; }
+  .abertura-dentro { grid-template-columns: minmax(0, 1fr) 448px; align-items: end; column-gap: 40px; }
+  .abertura-texto { padding-bottom: 96px; }
 }
 
-/* ===== Computador (1100 px ou mais): áreas e pacote parados numa coluna ao lado, 3 colunas de cartões ===== */
+/* ===== Computador (1100 px ou mais): áreas e a parede do pacote paradas ao lado, a parede de serviços em fileiras de 3 ===== */
 @media (min-width: 1100px) {
-  .servicos-grade { grid-template-columns: 270px 1fr; gap: 32px; align-items: start; }
-  .servicos-lado { position: sticky; top: 84px; display: grid; gap: 14px; }
+  .abertura { padding-top: 64px; }
+  .servicos-grade { grid-template-columns: 270px 1fr; gap: 36px; align-items: start; }
+  .servicos-lado { position: sticky; top: 92px; display: grid; gap: 22px; }
   .areas { flex-direction: column; flex-wrap: nowrap; position: static; padding: 0; background: none; gap: 6px; }
-  .area { justify-content: flex-start; border-radius: 12px; width: 100%; min-height: 44px; }
+  .area { justify-content: flex-start; width: 100%; }
   .area-conta { margin-left: auto; }
-  .pacote { display: grid; gap: 10px; padding: 18px; border-radius: var(--raio); background: var(--cartao); border: 2px solid var(--linha); }
-  .pacote-titulo { margin: 0; font-weight: 900; font-size: 1.1rem; }
-  .pacote-vazio { margin: 0; color: var(--tinta-suave); font-size: .92rem; }
-  .pacote-total { margin: 0; font-weight: 800; color: var(--cor); font-size: .95rem; }
-  .pacote-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 200px; overflow-y: auto; }
-  .pacote-lista li { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: .92rem; font-weight: 700; animation: abrir .2s ease-out; }
-  .pacote-tirar { flex: none; width: 32px; height: 32px; border-radius: 50%; border: 0; background: var(--cor-clara); color: var(--cor-forte); font: inherit; font-weight: 900; cursor: pointer; transition: transform .15s ease-out; }
-  .pacote-tirar:hover { transform: scale(1.1); }
-  .pacote-limpar { justify-self: start; min-height: 32px; padding: 0; border: 0; background: none; color: var(--tinta-suave); font: inherit; font-size: .9rem; text-decoration: underline; cursor: pointer; }
+  /* a parede do pacote: cada serviço escolhido é um bloco assentado em cima do anterior */
+  .pacote { display: grid; gap: 10px; }
+  .pacote-titulo { margin: 0; font-family: "Chakra Petch", sans-serif; font-weight: 700; font-size: 1.15rem; }
+  .pacote-vazio { margin: 0; padding: 12px; border: 2px dashed var(--sombra); color: var(--tinta-suave); font-size: .92rem; }
+  .pacote-total { margin: 0; font-weight: 700; color: var(--cor-forte); font-size: .95rem; }
+  .pacote-lista { list-style: none; margin: 0; padding: 0 0 6px; display: flex; flex-direction: column-reverse; gap: 6px; max-height: 330px; overflow-y: auto; border-bottom: 5px solid var(--junta); }
+  .pacote-lista:empty { display: none; }
+  .pacote-lista li { --c: 5px; --b-sh: 5px; flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 50px; padding: 0 3px 4px 12px; font-size: .9rem; font-weight: 600; line-height: 1.25; animation: assentar .3s var(--entrada); }
+  .pacote-lista li:nth-child(odd) { margin-right: 16px; }
+  .pacote-lista li:nth-child(even) { margin-left: 16px; }
+  .pacote-tirar { flex: none; width: 44px; height: 44px; border: 0; background: none; color: var(--cor-forte); font: inherit; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: background-color .2s ease-out, transform .15s ease-out; }
+  .pacote-tirar:hover { background: rgba(14, 116, 144, .12); }
+  .pacote-tirar:active { transform: scale(.92); }
+  .pacote-limpar { justify-self: start; min-height: 44px; padding: 0; border: 0; background: none; color: var(--tinta-suave); font: inherit; font-size: .9rem; text-decoration: underline; cursor: pointer; }
   :root:not(.js) .pacote { display: none; }
-  .servicos { grid-template-columns: repeat(3, 1fr); }
-  .servico:hover { box-shadow: 0 12px 28px -18px rgba(15, 23, 42, .5); }
-  .pacotes { grid-template-columns: repeat(4, 1fr); }
-  .raiox-grade { grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; align-items: start; }
-  .raiox-resultado { position: sticky; top: 84px; }
+  /* a parede: 7 trilhas, cada bloco ocupa 2; a fileira do meio começa meio bloco para dentro */
+  .servicos { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .servico:nth-child(4n+3 of .servico:not([hidden])) { grid-column: auto / span 2; }
+  .servico:nth-child(4n+3 of .servico:not([hidden]))::after, .servico:nth-child(4n+2 of .servico:not([hidden]))::after { display: none; }
+  .servico:nth-child(6n+4 of .servico:not([hidden])) { grid-column: 2 / span 2; }
+  .servico:nth-child(6n+4 of .servico:not([hidden]))::after { display: block; inset: 0 auto 0 auto; right: calc(100% + var(--jw)); width: calc(50% - var(--jw) / 2); }
+  .servico:nth-child(6n+3 of .servico:not([hidden]))::after { display: block; inset: 0 auto 0 auto; left: calc(100% + var(--jw)); width: calc(50% - var(--jw) / 2); }
+  .servico:hover::before { filter: brightness(1.03); }
+  .pacotes { grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .pacote-pronto .pacote-preco { min-height: 3.2em; }
+  .raiox-grade { grid-template-columns: minmax(0, 1fr) 390px; gap: 32px; align-items: start; }
+  .raiox-resultado { position: sticky; top: 92px; }
   .raiox-mini { display: none; }
-  /* os blocos lado a lado formam uma fileira do iglu */
-  .passos { grid-template-columns: repeat(4, 1fr); column-gap: 8px; }
-  .passos li { grid-template-columns: 1fr; padding-right: 16px; }
-  .passo-bloco { grid-row: auto; height: 52px; margin: 0 -16px 14px 0; }
-  .duvidas-dentro { display: grid; grid-template-columns: 270px 1fr; gap: 32px; align-items: start; }
-  .duvidas-dentro h2 { position: sticky; top: 84px; }
+  /* a escada: cada etapa um degrau acima, com as fiadas embaixo */
+  .passos { grid-template-columns: repeat(4, 1fr); align-items: end; }
+  .passos li:nth-child(2n) { margin-top: 0; }
+  .passos li { grid-template-columns: 1fr; row-gap: 6px; padding: 18px 18px calc(24px + var(--degrau) * 52px); }
+  .passos li::before { bottom: calc(var(--degrau) * 52px); }
+  .passos li::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: -1; height: max(0px, calc(var(--degrau) * 52px - 6px));
+    background: repeating-linear-gradient(180deg, var(--luz) 0 3px, var(--bloco) 3px 30px, var(--bloco-fundo) 30px 40px, var(--sombra) 40px 46px, transparent 46px 52px);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 104'%3E%3Cpath d='M7 0h126l4 4v38l-4 4H7l-4-4V4zM0 52h63l4 4v38l-4 4H0zM77 52h63v46H77l-4-4V56z'/%3E%3C/svg%3E") 0 0 / 140px 104px repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 104'%3E%3Cpath d='M7 0h126l4 4v38l-4 4H7l-4-4V4zM0 52h63l4 4v38l-4 4H0zM77 52h63v46H77l-4-4V56z'/%3E%3C/svg%3E") 0 0 / 140px 104px repeat; }
+  .passos li:nth-child(1) { --degrau: 0; }
+  .passos li:nth-child(2) { --degrau: 1; }
+  .passos li:nth-child(3) { --degrau: 2; }
+  .passos li:nth-child(4) { --degrau: 3; }
+  .passo-numero { grid-row: auto; }
+  .duvidas-dentro { display: grid; grid-template-columns: 270px 1fr; gap: 36px; align-items: start; }
+  .duvidas-dentro h2 { position: sticky; top: 92px; }
   .formulario-botoes { grid-template-columns: 1fr 1fr; }
   .barra-pacote { display: none !important; }
   body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 28px; }
@@ -387,5 +512,7 @@ body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 90px; }
   *, *::before, *::after { animation: none !important; transition-duration: 0s !important; transition-delay: 0s !important; }
   .antes, .servico.chegando { opacity: 1; transform: none; }
 }
-.erro { min-height: 100vh; display: grid; align-items: center; }
-.erro .cena { margin-top: 24px; }
+
+/* A página de erro */
+.erro { min-height: 100vh; display: grid; align-items: center; padding-bottom: 96px; }
+.erro-linu { width: 172px; height: 190px; margin-bottom: 18px; }

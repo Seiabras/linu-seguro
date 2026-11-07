@@ -1,6 +1,6 @@
-/* Linu Seguro (06/11/2026): tema com a luz do iglu, menu do celular, filtro por área, o pacote que se monta com a
-   estimativa, o formulário que escreve a mensagem, as entradas ao rolar e o Raio-X que monta o iglu. Sem biblioteca;
-   tudo funciona sem JavaScript, menos o filtro, o pacote e o Raio-X. */
+/* Linu Seguro (06/11/2026; iglu de blocos em 07/11/2026): tema com a luz do iglu, menu do celular, filtro por área,
+   a parede do pacote com a estimativa, o formulário que escreve a mensagem, as entradas ao rolar e o Raio-X que assenta
+   os blocos da cúpula. Sem biblioteca; tudo funciona sem JavaScript, menos o filtro, o pacote e o Raio-X. */
 (function () {
   "use strict";
   var raiz = document.documentElement;
@@ -31,7 +31,7 @@
 
   /* 1b. A luz do iglu ao trocar o tema: no escuro, a luz da porta acende (tremendo um pouco, como lampião); no claro,
         apaga. O Linu dá um pulinho. Se o iglu estiver fora da tela, a cena aparece num cartão no canto e some
-        sozinha. Só ao toque, nunca em loop; com "reduzir movimento", só a luz e a legenda mudam, sem animar. */
+        sozinha (lá, só o iglu, em 1 vez o tamanho do desenho). Só ao toque, nunca em loop; com "reduzir movimento", só a luz e a legenda mudam, sem animar. */
   var cena = document.querySelector("[data-cena]");
   var legenda = document.querySelector("[data-cena-legenda]");
   var cartao = null, sumirCartao;
@@ -156,6 +156,7 @@
     lista.textContent = "";
     escolhidos.forEach(function (id) {
       var li = document.createElement("li");
+      li.className = "bloco";
       var tirar = document.createElement("button");
       tirar.type = "button";
       tirar.className = "pacote-tirar";
@@ -292,8 +293,8 @@
     });
   }
 
-  /* 8. Raio-X: cada "sim" é um bloco do iglu no lugar ("não tenho site" também: não há site para proteger); cada
-        "não" aponta um serviço, com o motivo. As duas perguntas de contas levam ao mesmo serviço, que aparece uma
+  /* 8. Raio-X: cada pergunta tem o seu bloco na cúpula (data-rx-bloco). Cada "sim" assenta o bloco ("não tenho site"
+        também: não há site para proteger); cada "não" deixa o lugar marcado e aponta um serviço, com o motivo. As duas perguntas de contas levam ao mesmo serviço, que aparece uma
         vez só, com os dois motivos. Com tudo em dia, o Vigia. O resultado vai para o pacote. */
   var RAIOX = {
     whats: ["contas", "Sem a confirmação em duas etapas, quem descobre o código do SMS clona o WhatsApp e pede Pix aos seus clientes."],
@@ -310,7 +311,7 @@
   var rxVazio = document.querySelector("[data-raiox-vazio]");
   var rxBlocos = document.querySelector("[data-raiox-blocos]");
   var rxRespondidas = document.querySelector("[data-raiox-respondidas]");
-  var rxIglus = document.querySelectorAll("[data-raiox-iglu]");
+  var rxDomos = document.querySelectorAll(".raiox-domo");
   var rxMini = document.querySelector("[data-raiox-mini]");
   var rxSite = document.querySelector("[data-raiox-site]");
   var rxUsar = document.querySelector("[data-raiox-usar]");
@@ -326,7 +327,20 @@
     li.appendChild(document.createTextNode(motivos.join(" ")));
     rxLista.appendChild(li);
   }
-  function lerRaiox() {
+  // o bloco da pergunta nas duas cúpulas (a grande e a pequena presa no alto); "assentar" anima a descida do bloco
+  function marcarBloco(k, estado, assentar) {
+    document.querySelectorAll('[data-rx-bloco="' + k + '"]').forEach(function (g) {
+      var antes = g.classList.contains("posto");
+      g.classList.toggle("posto", estado === "posto");
+      g.classList.toggle("falta", estado === "falta");
+      if (assentar && estado === "posto" && !antes && !menosMovimento.matches) {
+        g.classList.remove("assentou");
+        void g.getBoundingClientRect();
+        g.classList.add("assentou");
+      }
+    });
+  }
+  function lerRaiox(e) {
     var n = 0, blocos = 0;
     var motivos = {};
     rxIds = [];
@@ -334,9 +348,11 @@
     perguntas.forEach(function (f) {
       var k = f.dataset.pergunta;
       var marcada = f.querySelector("input:checked");
-      if (!marcada) return;
+      f.classList.toggle("posta", !!marcada && marcada.value !== "nao");
+      if (!marcada) { marcarBloco(k, ""); return; }
       n++;
       respostas[k] = marcada.value;
+      marcarBloco(k, marcada.value === "nao" ? "falta" : "posto", !!e && f.contains(e.target));
       if (marcada.value !== "nao") { blocos++; return; }
       var id = RAIOX[k][0];
       if (!motivos[id]) { motivos[id] = []; rxIds.push(id); }
@@ -348,7 +364,7 @@
       rxIds = ["vigia"];
       recomendar("vigia", ["O iglu está de pé. Para continuar assim, alguém confere tudo todo mês e avisa se uma senha vazar."]);
     }
-    rxIglus.forEach(function (img) { img.dataset.blocos = String(blocos); });
+    rxDomos.forEach(function (d) { d.classList.toggle("completo", blocos === perguntas.length); });
     rxBlocos.textContent = rxMini.textContent = blocos === 1 ? "1 de 8 blocos" : blocos + " de 8 blocos";
     rxRespondidas.textContent = n === perguntas.length ? "(todas respondidas)" : "(" + n + " de " + perguntas.length + " respondidas)";
     rxVazio.hidden = rxIds.length > 0;
@@ -364,6 +380,14 @@
       if (r) r.checked = true;
     }
     f.addEventListener("change", lerRaiox);
+    // o dedo (ou o foco) numa pergunta acende o lugar dela na cúpula grande
+    var lugar = document.querySelector('.raiox-ceu [data-rx-bloco="' + k + '"]');
+    function acender() { lugar.classList.add("em-foco"); }
+    function apagar() { lugar.classList.remove("em-foco"); }
+    f.addEventListener("pointerenter", acender);
+    f.addEventListener("pointerleave", apagar);
+    f.addEventListener("focusin", acender);
+    f.addEventListener("focusout", apagar);
   });
   rxUsar.addEventListener("click", function () {
     rxIds.forEach(function (id) { if (escolhidos.indexOf(id) < 0) escolhidos.push(id); });
