@@ -1,0 +1,391 @@
+/* Linu Seguro (06/11/2026): a família Linu (grafite, azul, gelo, Nunito), com o azul-gelo do iglu como cor própria.
+   Três versões (DIRETRIZES-UX.md, seção 3): celular até 699 px, tablet de 700 a 1099 px, computador a partir de
+   1100 px. */
+@font-face { font-family: "Nunito"; font-style: normal; font-weight: 200 1000; font-display: swap; src: url(../fontes/nunito-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Nunito"; font-style: normal; font-weight: 200 1000; font-display: swap; src: url(../fontes/nunito-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+:root {
+  --grafite: #1F2A44;
+  --cor: #0E7490;          /* Iglu: botões e textos sobre o branco (5,4:1; 5,0:1 sobre o gelo) */
+  --cor-forte: #155E75;
+  --cor-clara: #CFFAFE;
+  --cor-texto: #FFFFFF;    /* o texto dos botões cheios */
+  --azul: #1D4ED8;
+  --fundo: #F8FAFC;
+  --gelo: #EFF8FF;
+  --cartao: #FFFFFF;
+  --tinta: #0F172A;
+  --tinta-suave: #475569;
+  --linha: #E2E8F0;
+  --raio: 18px;
+  --entrada: cubic-bezier(.2, .7, .3, 1);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cor: #22D3EE; --cor-forte: #67E8F9; --cor-clara: #083344; --cor-texto: #042F2E; --azul: #93C5FD;
+    --fundo: #0B1220; --gelo: #0B1E33; --cartao: #111B2E; --tinta: #E2E8F0; --tinta-suave: #A3B1C6; --linha: #23324D;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --cor: #22D3EE; --cor-forte: #67E8F9; --cor-clara: #083344; --cor-texto: #042F2E; --azul: #93C5FD;
+  --fundo: #0B1220; --gelo: #0B1E33; --cartao: #111B2E; --tinta: #E2E8F0; --tinta-suave: #A3B1C6; --linha: #23324D;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--fundo); color: var(--tinta); font-family: "Nunito", system-ui, sans-serif; font-size: 17px; line-height: 1.6; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--azul); }
+:focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; border-radius: 6px; }
+.topo :focus-visible, .faixa-irma :focus-visible, .abertura :focus-visible, .contato :focus-visible, .rodape :focus-visible, .barra-pacote :focus-visible, .raiox-resultado :focus-visible { outline-color: #7DD3FC; }
+.dentro { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+h1, h2, h3 { line-height: 1.2; margin: 0 0 .5em; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; }
+[hidden] { display: none !important; }
+.pixel { image-rendering: pixelated; }
+
+/* A faixa da família */
+.faixa-irma { margin: 0; padding: 8px 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; background: #111827; color: #CBD5E1; font-size: .9rem; text-align: center; }
+.faixa-irma a { color: #7DD3FC; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; min-height: 24px; display: inline-flex; align-items: center; gap: 4px; transition: color .2s ease-out; }
+.faixa-irma a:hover { color: #FFFFFF; }
+
+/* Botões */
+.botao { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 999px; border: 2px solid var(--cor); background: var(--cor); color: var(--cor-texto); font: inherit; font-weight: 800; text-decoration: none; text-align: center; cursor: pointer; transition: transform .15s ease-out, background-color .2s ease-out, border-color .2s ease-out, color .2s ease-out; }
+.botao:hover { background: var(--cor-forte); border-color: var(--cor-forte); }
+.botao:active { transform: scale(.97); }
+.botao-linha { background: transparent; color: var(--cor); }
+.botao-linha:hover { background: var(--cor-clara); color: var(--cor); }
+.botao-pequeno { min-height: 44px; padding: 0 16px; font-size: .95rem; }
+.botao-whatsapp { background: #15803D; border-color: #15803D; color: #FFFFFF; }
+.botao-whatsapp:hover { background: #166534; border-color: #166534; }
+.botao-linha-clara { background: transparent; border-color: rgba(255, 255, 255, .5); color: #FFFFFF; }
+.botao-linha-clara:hover { background: rgba(255, 255, 255, .12); border-color: rgba(255, 255, 255, .7); }
+.botao.enviado { transform: scale(1.03); }
+/* sobre o grafite (topo, abertura, Raio-X, barra), o botão cheio é sempre o ciano claro com texto escuro */
+.topo .botao, .abertura .botao:not(.botao-linha), .raiox-resultado .botao, .barra-pacote .botao { background: #22D3EE; border-color: #22D3EE; color: #042F2E; }
+.topo .botao:hover, .abertura .botao:not(.botao-linha):hover, .raiox-resultado .botao:hover, .barra-pacote .botao:hover { background: #67E8F9; border-color: #67E8F9; }
+
+/* Topo */
+.topo { background: var(--grafite); color: #FFFFFF; position: sticky; top: 0; z-index: 20; }
+.topo-dentro { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
+.marca { display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-weight: 800; font-size: 1.25rem; white-space: nowrap; min-height: 44px; }
+.marca img { border-radius: 12px; }
+.marca b { color: #67E8F9; font-weight: 900; }
+.menu { display: flex; align-items: center; gap: 14px; }
+.menu-links { display: flex; align-items: center; gap: 22px; }
+.menu-links a:not(.botao) { display: inline-flex; align-items: center; min-height: 44px; color: #E2E8F0; text-decoration: none; font-weight: 700; font-size: .95rem; white-space: nowrap; transition: color .2s ease-out; }
+.menu-links a:not(.botao):hover { color: #FFFFFF; }
+.menu-links-orcamento, .menu-abrir { display: none; }
+.menu-orcamento { white-space: nowrap; }
+.rotulo-curto { display: none; }
+.luz, .menu-abrir { align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border-radius: 12px; border: 2px solid rgba(255, 255, 255, .25); background: transparent; color: #FFFFFF; cursor: pointer; transition: background-color .2s ease-out, transform .15s ease-out; }
+.luz { display: inline-flex; }
+.luz:hover, .menu-abrir:hover { background: rgba(255, 255, 255, .12); }
+.luz:active, .menu-abrir:active { transform: scale(.94); }
+.luz svg, .menu-abrir svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icone-lua { display: none; }
+:root[data-theme="dark"] .icone-sol { display: none; }
+:root[data-theme="dark"] .icone-lua { display: inline; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icone-sol { display: none; }
+  :root:not([data-theme="light"]) .icone-lua { display: inline; }
+}
+
+/* Abertura: grafite liso com o fio de gelo embaixo */
+.abertura { background: var(--grafite); color: #FFFFFF; padding: 40px 0 36px; border-bottom: 6px solid #22D3EE; }
+.abertura-dentro { display: grid; gap: 28px; }
+.abertura-dentro > * { min-width: 0; }
+.sobretitulo { margin: 0 0 8px; color: #67E8F9; font-weight: 800; font-size: 1rem; }
+.abertura h1 { font-size: clamp(2rem, 7vw, 3.3rem); font-weight: 900; }
+.destaque { color: #67E8F9; }
+.abertura-sub { color: #E2E8F0; max-width: 60ch; margin: 0 0 24px; }
+.botoes { display: flex; flex-wrap: wrap; gap: 12px; }
+.abertura .botao-linha { color: #FFFFFF; border-color: rgba(255, 255, 255, .55); }
+.abertura .botao-linha:hover { background: rgba(255, 255, 255, .12); }
+
+/* O iglu do Linu: a assinatura do Linu Seguro. 1,5 vez o tamanho original no celular, 2 vezes no tablet e no
+   computador, com o Linu da chave no tamanho original (176 de 408 px); a luz da porta é um desenho por cima, do
+   mesmo tamanho do iglu, que acende no modo escuro */
+.cena { margin: 0; justify-self: center; width: min(100%, 306px); }
+.cena-quadro { position: relative; padding-bottom: 6%; }
+.cena-iglu, .cena-luz { width: 100%; }
+.cena-luz { position: absolute; top: 0; left: 0; opacity: 0; transition: opacity .25s ease-in; }
+.cena-brilho { position: absolute; left: 68%; top: 48%; width: 32%; height: 42%; border-radius: 50%; background: radial-gradient(closest-side, rgba(253, 186, 116, .38), rgba(253, 186, 116, 0)); opacity: 0; pointer-events: none; transition: opacity .25s ease-in; }
+.cena-linu { position: absolute; left: 4%; bottom: 0; width: 43.14%; transform-origin: bottom center; }
+.cena figcaption { margin-top: 10px; color: #CBD5E1; font-size: .9rem; text-align: center; }
+:root[data-theme="dark"] .cena-luz, :root[data-theme="dark"] .cena-brilho { opacity: 1; transition-timing-function: ease-out; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cena-luz, :root:not([data-theme="light"]) .cena-brilho { opacity: 1; } }
+/* ao trocar o tema: a luz acende tremendo ou apaga, e o Linu dá um pulinho; só ao toque (js/seguro.js) */
+.acendeu .cena-luz, .acendeu .cena-brilho { animation: acender .7s ease-out; }
+.apagou .cena-luz, .apagou .cena-brilho { animation: apagar .35s ease-in; }
+.acendeu .cena-linu, .apagou .cena-linu { animation: pulinho .6s ease-out; }
+@keyframes acender { 0% { opacity: 0; } 25% { opacity: .85; } 40% { opacity: .25; } 60%, 100% { opacity: 1; } }
+@keyframes apagar { 0% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes pulinho { 0% { transform: none; } 20% { transform: scale(1.04, .94); } 45% { transform: translateY(-14%); } 70% { transform: scale(1.05, .95); } 85% { transform: scale(.98, 1.02); } 100% { transform: none; } }
+/* o cartão do canto, quando o iglu está fora da tela */
+.cena-cartao { position: fixed; top: 76px; right: 12px; z-index: 25; width: 150px; padding: 10px 10px 4px; border-radius: 14px; background: var(--grafite); box-shadow: 0 14px 30px -12px rgba(0, 0, 0, .55); opacity: 0; transform: translateY(-8px) scale(.96); pointer-events: none; transition: opacity .2s ease-in, transform .2s ease-in; }
+.cena-cartao.aberto { opacity: 1; transform: none; transition: opacity .2s ease-out, transform .2s ease-out; }
+
+/* Seções */
+.secao { padding: 56px 0; }
+.secao-gelo { background: var(--gelo); }
+.secao-sub { color: var(--tinta-suave); max-width: 65ch; margin: 0 0 24px; }
+
+/* Ícones desenhados (o sprite fica no começo do <body>) */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icone { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Raio-X: no celular, as perguntas em lista e o iglu embaixo; tablet, as perguntas em 2 colunas; computador, as
+   perguntas à esquerda e o iglu parado à direita */
+:root:not(.js) .raiox { display: none; }
+.raiox-grade { display: grid; gap: 20px; }
+.raiox-grade > * { min-width: 0; }
+.perguntas { display: grid; gap: 10px; }
+.pergunta { margin: 0; padding: 12px 14px; border-radius: 14px; border: 2px solid var(--linha); background: var(--cartao); display: flex; flex-wrap: wrap; align-items: center; gap: 8px; transition: border-color .2s ease-out; }
+.pergunta:has(input:checked) { border-color: var(--cor-clara); }
+.pergunta legend { float: left; width: 100%; padding: 0; margin-bottom: 4px; font-weight: 700; }
+.pergunta legend small { display: block; color: var(--tinta-suave); font-size: .88rem; font-weight: 600; }
+.pergunta label { position: relative; }
+.pergunta input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.pergunta span { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 72px; padding: 0 16px; border-radius: 999px; border: 2px solid var(--linha); font-weight: 800; cursor: pointer; transition: background-color .2s ease-out, border-color .2s ease-out, color .2s ease-out, transform .15s ease-out; }
+.pergunta span:hover { border-color: var(--cor); }
+.pergunta label:active span { transform: scale(.95); }
+.pergunta input:checked + span { background: var(--cor); border-color: var(--cor); color: var(--cor-texto); }
+.pergunta input:focus-visible + span { outline: 3px solid var(--azul); outline-offset: 3px; }
+.raiox-resultado { display: grid; gap: 10px; align-content: start; padding: 18px; border-radius: var(--raio); background: var(--grafite); color: #E2E8F0; }
+/* o iglu que se monta: a silhueta apagada mostra o que falta; o iglu de verdade aparece de baixo para cima, um
+   oitavo por bloco no lugar */
+.raiox-iglu { position: relative; justify-self: center; width: min(100%, 306px); margin-bottom: 4px; }
+.raiox-iglu img { width: 100%; }
+.raiox-iglu-sombra { filter: brightness(0) invert(1); opacity: .1; }
+.raiox-iglu-pronto { position: absolute; top: 0; left: 0; clip-path: inset(100% 0 0 0); transition: clip-path .4s var(--entrada); }
+.raiox-iglu-pronto[data-blocos="1"] { clip-path: inset(87.5% 0 0 0); }
+.raiox-iglu-pronto[data-blocos="2"] { clip-path: inset(75% 0 0 0); }
+.raiox-iglu-pronto[data-blocos="3"] { clip-path: inset(62.5% 0 0 0); }
+.raiox-iglu-pronto[data-blocos="4"] { clip-path: inset(50% 0 0 0); }
+.raiox-iglu-pronto[data-blocos="5"] { clip-path: inset(37.5% 0 0 0); }
+.raiox-iglu-pronto[data-blocos="6"] { clip-path: inset(25% 0 0 0); }
+.raiox-iglu-pronto[data-blocos="7"] { clip-path: inset(12.5% 0 0 0); }
+.raiox-iglu-pronto[data-blocos="8"] { clip-path: inset(0 0 0 0); }
+/* o iglu pequeno preso no alto (celular e tablet) */
+.raiox-mini { position: sticky; top: 72px; z-index: 4; display: flex; align-items: center; gap: 12px; padding: 8px 14px; border-radius: 14px; background: var(--grafite); color: #E2E8F0; box-shadow: 0 10px 24px -16px rgba(0, 0, 0, .6); font-weight: 800; }
+.raiox-mini [data-raiox-mini] { color: #67E8F9; }
+.raiox-mini-iglu { position: relative; flex: none; width: 68px; }
+.raiox-mini-iglu img { width: 100%; }
+.raiox-contagem { margin: 0; color: #CBD5E1; font-size: .95rem; text-align: center; }
+.raiox-contagem b { color: #67E8F9; font-size: 1.15rem; font-weight: 900; }
+.raiox-vazio { margin: 0; color: #CBD5E1; }
+.raiox-lista { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.raiox-lista li { display: grid; gap: 2px; padding-left: 14px; border-left: 3px solid #22D3EE; color: #CBD5E1; font-size: .95rem; animation: abrir .2s ease-out; }
+.raiox-lista b { color: #FFFFFF; }
+.raiox-site { margin: 0; color: #CBD5E1; }
+.raiox-site a { color: #7DD3FC; }
+.raiox-total { margin: 0; color: #67E8F9; font-weight: 800; }
+.raiox-resultado .botao { justify-self: start; }
+
+/* Serviços: no celular, a faixa de áreas rola de lado e os cartões ficam compactos */
+.servicos-grade { display: grid; gap: 18px; }
+.areas { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; margin: 0 -16px; padding: 4px 16px 10px; scrollbar-width: none; }
+.areas::-webkit-scrollbar { display: none; }
+.area { flex: none; scroll-snap-align: start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 2px solid var(--linha); background: var(--cartao); color: var(--tinta); font: inherit; font-weight: 700; font-size: .95rem; cursor: pointer; transition: background-color .2s ease-out, border-color .2s ease-out, color .2s ease-out, transform .15s ease-out; }
+.area:hover { border-color: var(--cor); }
+.area:active { transform: scale(.96); }
+.area[aria-pressed="true"] { background: var(--cor); border-color: var(--cor); color: var(--cor-texto); }
+.area-conta { font-size: .8rem; opacity: .75; }
+.area .icone { width: 18px; height: 18px; }
+.pacote { display: none; }
+/* no celular e no tablet, a coluna do lado se desfaz, para a faixa de áreas ficar presa em toda a lista */
+@media (max-width: 1099px) { .servicos-lado { display: contents; } }
+
+.servicos { display: grid; gap: 10px; }
+.servico { position: relative; display: grid; grid-template-columns: 1fr auto; grid-template-areas: "area botao" "titulo botao" "texto texto" "preco preco"; column-gap: 12px; padding: 14px 16px; border-radius: var(--raio); background: var(--cartao); border: 2px solid var(--linha); transition: border-color .2s ease-out, box-shadow .2s ease-out, opacity .22s var(--entrada), transform .22s var(--entrada); }
+.servico.escolhido { border-color: var(--cor); }
+.servico.chegando { opacity: 0; transform: translateY(8px); }
+.servico-area { grid-area: area; display: inline-flex; align-items: center; gap: 6px; font-size: .88rem; font-weight: 800; color: var(--cor); }
+.servico-area .icone { width: 20px; height: 20px; }
+.servico h3 { grid-area: titulo; font-size: 1.05rem; margin: 2px 0 4px; }
+.servico p { grid-area: texto; margin: 0; color: var(--tinta-suave); font-size: .95rem; }
+.servico .servico-preco { grid-area: preco; margin-top: 8px; color: var(--tinta); font-size: .95rem; }
+.servico-preco b { font-weight: 900; }
+.servico-preco span { color: var(--tinta-suave); font-size: .88rem; }
+.servicos-nota { margin: -12px 0 20px; max-width: 65ch; color: var(--tinta-suave); font-size: .9rem; }
+.adicionar { grid-area: botao; align-self: start; min-height: 44px; min-width: 44px; padding: 0 14px; border-radius: 999px; border: 2px solid var(--cor); background: transparent; color: var(--cor); font: inherit; font-weight: 800; font-size: .9rem; cursor: pointer; white-space: nowrap; transition: background-color .2s ease-out, color .2s ease-out, transform .15s ease-out; }
+.adicionar:hover { background: var(--cor-clara); }
+.adicionar:active { transform: scale(.95); }
+.adicionar[aria-pressed="true"] { background: var(--cor); color: var(--cor-texto); }
+/* sem JavaScript, nada para adicionar: os cartões ficam só de leitura */
+:root:not(.js) .adicionar { display: none; }
+
+/* Pacotes prontos: no celular, uma faixa que rola de lado */
+.pacotes { display: grid; grid-auto-flow: column; grid-auto-columns: 82%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 4px 16px 12px; scrollbar-width: thin; }
+.pacote-pronto { scroll-snap-align: start; display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: var(--raio); background: var(--cartao); border: 2px solid var(--linha); }
+.pacote-pronto p { margin: 0; color: var(--tinta-suave); }
+.pacote-pronto .pacote-nome { color: var(--tinta); font-size: 1.35rem; font-weight: 900; }
+.pacote-pronto ul { margin: 0; padding-left: 20px; flex: 1; }
+.pacote-pronto li { margin: 2px 0; }
+.pacote-pronto .botao { align-self: flex-start; }
+.pacote-pronto .pacote-preco { color: var(--tinta); font-weight: 800; }
+.pacote-pronto-destaque { border-color: var(--cor); box-shadow: 0 10px 30px -18px var(--cor); }
+.pacote-pronto-familia { background: transparent; border-style: dashed; }
+:root:not(.js) [data-escolher-pacote] { display: none; }
+
+/* Como funciona: cada etapa é um bloco de gelo, assentado um depois do outro */
+.passos { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.passos li { display: grid; grid-template-columns: 64px 1fr; column-gap: 16px; align-items: start; }
+/* o bloco de gelo: a borda do iglu, o brilho em cima e a sombra embaixo, como os blocos do desenho */
+.passo-bloco { grid-row: 1 / span 2; position: relative; display: grid; place-items: center; height: 48px; margin-top: 2px; border-radius: 6px; border: 2px solid var(--cor); background: var(--cor-clara); box-shadow: inset 0 -6px 0 rgba(14, 116, 144, .22); color: var(--cor-forte); font-size: 1.3rem; font-weight: 900; }
+.passo-bloco::before { content: ""; position: absolute; left: 7px; right: 40%; top: 6px; height: 3px; border-radius: 2px; background: #FFFFFF; opacity: .75; }
+:root[data-theme="dark"] .passo-bloco { box-shadow: inset 0 -6px 0 rgba(0, 0, 0, .3); }
+:root[data-theme="dark"] .passo-bloco::before { opacity: .18; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .passo-bloco { box-shadow: inset 0 -6px 0 rgba(0, 0, 0, .3); }
+  :root:not([data-theme="light"]) .passo-bloco::before { opacity: .18; }
+}
+.passos b { font-size: 1.1rem; }
+.passos span:last-child { color: var(--tinta-suave); }
+
+/* Dúvidas: acordeão com transição */
+.duvidas { display: grid; gap: 10px; }
+.duvidas details { border-radius: 14px; background: var(--cartao); border: 2px solid var(--linha); transition: border-color .2s ease-out; }
+.duvidas details[open] { border-color: var(--cor); }
+.duvidas summary { min-height: 52px; padding: 12px 48px 12px 16px; font-weight: 800; cursor: pointer; list-style: none; position: relative; }
+.duvidas summary::-webkit-details-marker { display: none; }
+.duvidas summary::after { content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 1.4rem; color: var(--cor); transition: transform .2s ease-out; }
+.duvidas details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.duvidas details p { margin: 0; padding: 0 16px 16px; color: var(--tinta-suave); }
+.duvidas details[open] p { animation: abrir .2s ease-out; }
+@keyframes abrir { from { opacity: 0; transform: translateY(-6px); } }
+
+/* Contato */
+.contato { background: var(--grafite); color: #FFFFFF; }
+.contato-dentro { display: grid; gap: 24px; }
+.contato-texto p { color: #CBD5E1; }
+.contato-canais { font-weight: 700; }
+.contato-texto .contato-aviso { padding-left: 12px; border-left: 3px solid #22D3EE; color: #E2E8F0; font-weight: 700; }
+.formulario { display: grid; gap: 14px; padding: 20px; border-radius: var(--raio); background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); }
+.campo { display: grid; gap: 4px; }
+.campo label, .campo-rotulo { font-weight: 800; font-size: .95rem; }
+.opcional { font-weight: 600; color: #CBD5E1; }
+.campo input, .campo textarea { width: 100%; min-height: 48px; padding: 10px 14px; border-radius: 12px; border: 2px solid rgba(255, 255, 255, .25); background: #0F172A; color: #FFFFFF; font: inherit; transition: border-color .2s ease-out; }
+.campo input::placeholder, .campo textarea::placeholder { color: #94A3B8; }
+.campo input:focus, .campo textarea:focus { border-color: #7DD3FC; outline: none; }
+.campo [aria-invalid="true"] { border-color: #FCA5A5; }
+.campo-erro { margin: 0; min-height: 1.2em; color: #FCA5A5; font-size: .9rem; font-weight: 700; }
+.formulario-total { margin: 6px 0 0; color: #67E8F9; font-weight: 800; font-size: .95rem; }
+.formulario-pacote { margin: 0; padding: 10px 14px; border-radius: 12px; background: rgba(255, 255, 255, .06); color: #E2E8F0; }
+.formulario-botoes { display: grid; gap: 10px; }
+
+/* A barra do pacote, presa embaixo (celular e tablet) */
+.barra-pacote { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 15; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 10px 10px 18px; border-radius: 999px; background: var(--grafite); color: #FFFFFF; box-shadow: 0 12px 30px -10px rgba(0, 0, 0, .45); font-weight: 800; transition: opacity .2s ease-in, transform .2s ease-in; }
+.barra-pacote.escondida { opacity: 0; transform: translateY(120%); pointer-events: none; }
+.barra-texto { min-width: 0; font-size: .92rem; line-height: 1.3; }
+.barra-pacote .botao { flex: none; white-space: nowrap; }
+body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 90px; }
+
+/* Rodapé */
+.rodape { background: #111827; color: #CBD5E1; padding: 28px 0; font-size: .95rem; }
+.rodape-dentro { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.rodape p { margin: 0; }
+.rodape a { color: #7DD3FC; }
+.rodape-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 22px; }
+.rodape-link, .topo-voltar { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 800; }
+
+/* Entradas ao rolar (js/seguro.js): só transform e opacity */
+.antes { opacity: 0; transform: translateY(14px); }
+.secao h2, .secao-sub, .servico, .pacote-pronto, .passos li, .duvidas details, .pergunta { transition-property: opacity, transform, border-color, box-shadow; transition-duration: .24s; transition-timing-function: var(--entrada); transition-delay: var(--atraso, 0ms); }
+
+/* ===== Celular (até 699 px): o menu no botão ===== */
+@media (max-width: 699px) {
+  .menu-abrir { display: inline-flex; }
+  .menu-orcamento { display: none; }
+  .menu-links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 16px 16px; background: var(--grafite); border-top: 1px solid rgba(255, 255, 255, .1); opacity: 0; transform: translateY(-8px); visibility: hidden; transition: opacity .15s ease-in, transform .15s ease-in, visibility 0s .15s; }
+  .menu-links.aberto { opacity: 1; transform: none; visibility: visible; transition: opacity .2s ease-out, transform .2s ease-out; }
+  .menu-links a:not(.botao) { display: flex; align-items: center; min-height: 48px; font-size: 1.05rem; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  .menu-links-orcamento { display: inline-flex; margin-top: 12px; }
+  :root:not(.js) .menu-links { position: static; opacity: 1; visibility: visible; transform: none; }
+  :root:not(.js) .menu-abrir { display: none; }
+  .areas { position: sticky; top: 64px; z-index: 5; background: var(--fundo); padding-top: 8px; }
+  .rodape-links { width: 100%; }
+}
+
+/* ===== Tablet (700 a 1099 px): faixa de áreas no alto, cartões em 2 colunas, pacotes em 2 colunas ===== */
+@media (min-width: 700px) {
+  .dentro { padding: 0 28px; }
+  .dentro.topo-dentro { padding-top: 10px; padding-bottom: 10px; }
+  .abertura { padding: 64px 0 56px; }
+  .cena { width: 408px; }
+  .areas { flex-wrap: wrap; overflow: visible; margin: 0; padding: 10px 0; position: sticky; top: 64px; z-index: 5; background: var(--fundo); }
+  .servicos { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .servico { grid-template-columns: 1fr; grid-template-areas: "area" "titulo" "texto" "preco" "botao"; grid-template-rows: auto auto 1fr auto auto; row-gap: 4px; padding: 18px; }
+  .adicionar { justify-self: start; margin-top: 10px; }
+  .pacotes { grid-auto-flow: row; grid-template-columns: repeat(2, 1fr); overflow: visible; margin: 0; padding: 0; }
+  .perguntas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .raiox-mini { grid-column: 1 / -1; }
+  .duvidas { grid-template-columns: repeat(2, 1fr); align-items: start; }
+  .passos { grid-template-columns: repeat(2, 1fr); column-gap: 28px; row-gap: 24px; }
+  .contato-dentro { grid-template-columns: 1fr 1.3fr; align-items: start; }
+  .barra-pacote { left: auto; right: 24px; bottom: 24px; min-width: 360px; }
+}
+/* tablet em pé: o menu mais junto e o botão do orçamento com o rótulo curto, para caber numa linha */
+@media (min-width: 700px) and (max-width: 899px) {
+  .menu { gap: 10px; }
+  .menu-links { gap: 14px; }
+  .menu-orcamento .rotulo-largo { display: none; }
+  .menu-orcamento .rotulo-curto { display: inline; }
+}
+/* só no tablet: o resultado do Raio-X com o iglu à esquerda e o texto à direita */
+@media (min-width: 700px) and (max-width: 1099px) {
+  .raiox-resultado { grid-template-columns: 240px minmax(0, 1fr); column-gap: 28px; padding: 22px; }
+  .raiox-iglu { grid-row: 1 / span 6; align-self: center; margin: 0; }
+  .raiox-resultado > :not(.raiox-iglu) { grid-column: 2; }
+  .raiox-contagem { text-align: left; }
+}
+/* tablet deitado e notebook: a abertura em duas colunas, o texto e o iglu */
+@media (min-width: 900px) {
+  .abertura-dentro { grid-template-columns: minmax(0, 1.15fr) auto; align-items: center; column-gap: 40px; }
+}
+
+/* ===== Computador (1100 px ou mais): áreas e pacote parados numa coluna ao lado, 3 colunas de cartões ===== */
+@media (min-width: 1100px) {
+  .servicos-grade { grid-template-columns: 270px 1fr; gap: 32px; align-items: start; }
+  .servicos-lado { position: sticky; top: 84px; display: grid; gap: 14px; }
+  .areas { flex-direction: column; flex-wrap: nowrap; position: static; padding: 0; background: none; gap: 6px; }
+  .area { justify-content: flex-start; border-radius: 12px; width: 100%; min-height: 44px; }
+  .area-conta { margin-left: auto; }
+  .pacote { display: grid; gap: 10px; padding: 18px; border-radius: var(--raio); background: var(--cartao); border: 2px solid var(--linha); }
+  .pacote-titulo { margin: 0; font-weight: 900; font-size: 1.1rem; }
+  .pacote-vazio { margin: 0; color: var(--tinta-suave); font-size: .92rem; }
+  .pacote-total { margin: 0; font-weight: 800; color: var(--cor); font-size: .95rem; }
+  .pacote-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 200px; overflow-y: auto; }
+  .pacote-lista li { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: .92rem; font-weight: 700; animation: abrir .2s ease-out; }
+  .pacote-tirar { flex: none; width: 32px; height: 32px; border-radius: 50%; border: 0; background: var(--cor-clara); color: var(--cor-forte); font: inherit; font-weight: 900; cursor: pointer; transition: transform .15s ease-out; }
+  .pacote-tirar:hover { transform: scale(1.1); }
+  .pacote-limpar { justify-self: start; min-height: 32px; padding: 0; border: 0; background: none; color: var(--tinta-suave); font: inherit; font-size: .9rem; text-decoration: underline; cursor: pointer; }
+  :root:not(.js) .pacote { display: none; }
+  .servicos { grid-template-columns: repeat(3, 1fr); }
+  .servico:hover { box-shadow: 0 12px 28px -18px rgba(15, 23, 42, .5); }
+  .pacotes { grid-template-columns: repeat(4, 1fr); }
+  .raiox-grade { grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; align-items: start; }
+  .raiox-resultado { position: sticky; top: 84px; }
+  .raiox-mini { display: none; }
+  /* os blocos lado a lado formam uma fileira do iglu */
+  .passos { grid-template-columns: repeat(4, 1fr); column-gap: 8px; }
+  .passos li { grid-template-columns: 1fr; padding-right: 16px; }
+  .passo-bloco { grid-row: auto; height: 52px; margin: 0 -16px 14px 0; }
+  .duvidas-dentro { display: grid; grid-template-columns: 270px 1fr; gap: 32px; align-items: start; }
+  .duvidas-dentro h2 { position: sticky; top: 84px; }
+  .formulario-botoes { grid-template-columns: 1fr 1fr; }
+  .barra-pacote { display: none !important; }
+  body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: 0s !important; transition-delay: 0s !important; }
+  .antes, .servico.chegando { opacity: 1; transform: none; }
+}
+.erro { min-height: 100vh; display: grid; align-items: center; }
+.erro .cena { margin-top: 24px; }

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Linu Seguro: segurança digital para pequenos negócios</title>
+  <meta name="description" content="Contra golpe no WhatsApp e no Pix: contas com verificação em duas etapas, senhas da equipe, cópias de segurança, e-mail e site configurados e aviso de privacidade da LGPD. Faça o Raio-X e monte o seu pacote.">
+  <meta name="theme-color" content="#1F2A44">
+  <link rel="icon" href="img/linu-logo.png" type="image/png" sizes="128x128">
+  <link rel="icon" href="img/icone-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="img/icone-180.png">
+  <meta property="og:title" content="Linu Seguro">
+  <meta property="og:description" content="Segurança digital para pequenos negócios: golpes, contas e senhas, cópias de segurança, e-mail, site e LGPD. Da família Linu.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seguro.linupedia.com.br/">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:image" content="https://seguro.linupedia.com.br/img/compartilhar.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="O Linu, o pinguim em pixel art, com a chave na frente do iglu, ao lado do nome Linu Seguro e da frase: o seu negócio pronto antes do golpe">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- O que o Google lê sobre o Linu Seguro (schema.org); os serviços são os 9 cartões da página -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Linu Seguro","url":"https://seguro.linupedia.com.br/","description":"Segurança digital para pequenos negócios: golpes, contas e senhas, cópias de segurança, e-mail, site e LGPD.","image":"https://seguro.linupedia.com.br/img/compartilhar.png","logo":"https://seguro.linupedia.com.br/img/linu-logo.png","telephone":"+55-61-99667-2610","email":"contato@linupedia.com.br","areaServed":"BR","inLanguage":"pt-BR","parentOrganization":{"@type":"Organization","name":"Família Linu","url":"https://familia.linupedia.com.br/"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Serviços","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Check-up de segurança"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":350,"priceCurrency":"BRL"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"WhatsApp e contas protegidos"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":250,"priceCurrency":"BRL"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Senhas da equipe"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":300,"priceCurrency":"BRL"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Cópias de segurança automáticas"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":400,"priceCurrency":"BRL"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"E-mail sem golpe"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":300,"priceCurrency":"BRL"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Site em dia"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":400,"priceCurrency":"BRL"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Aviso de privacidade (LGPD)"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":500,"priceCurrency":"BRL"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Treino antigolpe da equipe"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":400,"priceCurrency":"BRL"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Vigia mensal"},"priceSpecification":{"@type":"UnitPriceSpecification","minPrice":150,"priceCurrency":"BRL","unitText":"mês"}}]}}</script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://seguro.linupedia.com.br/">
+  <link rel="preload" href="fontes/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="js/tema-inicio.js?v=1"></script>
+  <link rel="stylesheet" href="css/estilo.css?v=1">
+  <script src="js/seguro.js?v=1" defer></script>
+</head>
+<body>
+  <!-- Os ícones do Linu Seguro, desenhados para ele (traço 2, pontas redondas), no lugar de emoji -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-cadeado" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2.5"/></symbol>
+    <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.5v5.5c0 4.7 3.2 8.6 7.5 10.5 4.3-1.9 7.5-5.8 7.5-10.5V5.5Z"/><rect x="9.25" y="7.5" width="5.5" height="9" rx="1"/><path d="M11.5 14.5h1"/></symbol>
+    <symbol id="i-chave" viewBox="0 0 24 24"><circle cx="7.5" cy="14.5" r="4"/><path d="M10.5 11.5 20 2M16.5 5.5l2.5 2.5M13.5 8.5l2 2"/></symbol>
+    <symbol id="i-nuvem" viewBox="0 0 24 24"><path d="M7 18.5h10.5a4 4 0 0 0 .5-8 6 6 0 0 0-11.5 1.5A3.3 3.3 0 0 0 7 18.5Z"/><path d="M12 16v-5M9.75 13.25 12 11l2.25 2.25"/></symbol>
+    <symbol id="i-envelope" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 6.5 8.5 7 8.5-7"/></symbol>
+    <symbol id="i-globo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.75 5.5 3.75 9S14.5 18.5 12 21M12 3C9.5 5.5 8.25 8.5 8.25 12S9.5 18.5 12 21"/></symbol>
+    <symbol id="i-documento" viewBox="0 0 24 24"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8Z"/><path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h5"/></symbol>
+    <symbol id="i-pessoas" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20.5a6.5 6.5 0 0 1 13 0"/><path d="M15.5 4.8a3.5 3.5 0 0 1 0 6.4M18 14.5a6.5 6.5 0 0 1 3.5 6"/></symbol>
+    <symbol id="i-olho" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  </svg>
+  <!-- A faixa da família (06/11/2026): aponta para a Família Linu, que reúne os quatro serviços -->
+  <p class="faixa-irma">
+    <span>Da família Linu, com o Linu Sites e o Digital Linu.</span>
+    <a href="https://familia.linupedia.com.br/">Conheça a Família Linu <span aria-hidden="true">→</span></a>
+  </p>
+
+  <header class="topo">
+    <div class="dentro topo-dentro">
+      <a class="marca" href="./" aria-label="Linu Seguro, início">
+        <img src="img/linu-logo.png" alt="" width="40" height="40">
+        <span>Linu <b>Seguro</b></span>
+      </a>
+      <nav class="menu" aria-label="Seções">
+        <div class="menu-links" id="menu-links">
+          <a href="#raiox">Raio-X</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#pacotes">Pacotes</a>
+          <a href="#duvidas">Dúvidas</a>
+          <a class="botao menu-links-orcamento" href="#contato">Pedir orçamento</a>
+        </div>
+        <button class="luz" type="button" data-tema aria-label="Mudar para o modo escuro" title="Modo escuro">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <path class="icone-sol" d="M12 7.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9ZM12 1.5v2.2M12 20.3v2.2M1.5 12h2.2M20.3 12h2.2M4.6 4.6l1.5 1.5M17.9 17.9l1.5 1.5M4.6 19.4l1.5-1.5M17.9 6.1l1.5-1.5" />
+            <path class="icone-lua" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
+          </svg>
+        </button>
+        <a class="botao botao-pequeno menu-orcamento" href="#contato"><span class="rotulo-largo">Pedir orçamento</span><span class="rotulo-curto">Orçamento</span></a>
+        <button class="menu-abrir" type="button" aria-expanded="false" aria-controls="menu-links" aria-label="Abrir o menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="abertura">
+      <div class="dentro abertura-dentro">
+        <div class="abertura-texto">
+          <p class="sobretitulo">Segurança digital para pequenos negócios</p>
+          <h1>Golpe, senha vazada, celular perdido: o seu negócio <span class="destaque">pronto antes</span></h1>
+          <p class="abertura-sub">WhatsApp e contas com verificação em duas etapas, cada pessoa com a sua senha, cópia de tudo,
+            e-mail e site configurados e o aviso de privacidade da LGPD. A equipe configura junto com você, e as senhas
+            ficam com você.</p>
+          <div class="botoes">
+            <a class="botao" href="#raiox">Fazer o Raio-X (1 minuto)</a>
+            <a class="botao botao-linha" href="#servicos">Ver os serviços</a>
+          </div>
+        </div>
+        <!-- O iglu do Linu: a casa que protege. Ao trocar o tema, a luz da porta acende ou apaga e o Linu dá um
+             pulinho (js/seguro.js, bloco 1b) -->
+        <figure class="cena">
+          <div class="cena-quadro" data-cena>
+            <img class="pixel cena-iglu" src="img/iglu.png" alt="" width="204" height="171">
+            <img class="pixel cena-luz" src="img/iglu-luz.png" alt="" width="204" height="171">
+            <span class="cena-brilho" aria-hidden="true"></span>
+            <img class="pixel cena-linu" src="img/linu-chave.png" alt="O Linu, o pinguim da LinuPedia, na frente do iglu de gelo, mostrando a chave de casa" width="176" height="190">
+          </div>
+          <figcaption data-cena-legenda>O Linu com a chave de casa. Cada bloco de gelo é uma proteção no lugar.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Raio-X (06/11/2026): oito perguntas de sim ou não; cada "sim" põe um bloco no iglu, cada "não" recomenda um
+         serviço (js/seguro.js, bloco 8). Sem JavaScript, a seção não aparece. -->
+    <section class="secao secao-gelo raiox" id="raiox">
+      <div class="dentro">
+        <h2>Raio-X de segurança</h2>
+        <p class="secao-sub">Oito perguntas de sim ou não. Cada “sim” é um bloco de gelo no lugar; cada “não” mostra o que
+          falta e por quê, e você leva para o pacote com um toque.</p>
+        <div class="raiox-grade">
+          <div class="perguntas">
+            <!-- No celular e no tablet, o iglu pequeno fica preso no alto enquanto se responde -->
+            <div class="raiox-mini" aria-hidden="true">
+              <span class="raiox-mini-iglu">
+                <img class="pixel raiox-iglu-sombra" src="img/iglu.png" alt="" width="204" height="171">
+                <img class="pixel raiox-iglu-pronto" src="img/iglu.png" alt="" width="204" height="171" data-raiox-iglu>
+              </span>
+              <span data-raiox-mini>0 de 8 blocos</span>
+            </div>
+            <fieldset class="pergunta" data-pergunta="whats">
+              <legend>O WhatsApp do negócio tem a confirmação em duas etapas ligada?</legend>
+              <label><input type="radio" name="rx-whats" value="sim"><span>Sim</span></label>
+              <label><input type="radio" name="rx-whats" value="nao"><span>Não</span></label>
+            </fieldset>
+            <fieldset class="pergunta" data-pergunta="contas">
+              <legend>O e-mail, o Instagram e o banco pedem verificação em duas etapas?</legend>
+              <label><input type="radio" name="rx-contas" value="sim"><span>Sim</span></label>
+              <label><input type="radio" name="rx-contas" value="nao"><span>Não</span></label>
+            </fieldset>
+            <fieldset class="pergunta" data-pergunta="senhas">
+              <legend>Cada pessoa da equipe tem a própria senha, e nenhuma se repete?</legend>
+              <label><input type="radio" name="rx-senhas" value="sim"><span>Sim</span></label>
+              <label><input type="radio" name="rx-senhas" value="nao"><span>Não</span></label>
+            </fieldset>
+            <fieldset class="pergunta" data-pergunta="copias">
+              <legend>Se o computador ou o celular sumir hoje, os arquivos estão salvos em outro lugar?</legend>
+              <label><input type="radio" name="rx-copias" value="sim"><span>Sim</span></label>
+              <label><input type="radio" name="rx-copias" value="nao"><span>Não</span></label>
+            </fieldset>
+            <fieldset class="pergunta" data-pergunta="golpe">
+              <legend>A equipe sabe reconhecer o golpe do Pix e o do falso suporte?</legend>
+              <label><input type="radio" name="rx-golpe" value="sim"><span>Sim</span></label>
+              <label><input type="radio" name="rx-golpe" value="nao"><span>Não</span></label>
+            </fieldset>
+            <fieldset class="pergunta" data-pergunta="email">
+              <legend>O e-mail do negócio é de domínio próprio e protegido contra falsificação? <small>Na dúvida, “não”.</small></legend>
+              <label><input type="radio" name="rx-email" value="sim"><span>Sim</span></label>
+              <label><input type="radio" name="rx-email" value="nao"><span>Não</span></label>
+            </fieldset>
+            <fieldset class="pergunta" data-pergunta="site">
+              <legend>O site tem o cadeado (HTTPS) e foi atualizado nos últimos 3 meses?</legend>
+              <label><input type="radio" name="rx-site" value="sim"><span>Sim</span></label>
+              <label><input type="radio" name="rx-site" value="nao"><span>Não</span></label>
+              <label><input type="radio" name="rx-site" value="sem"><span>Não tenho site</span></label>
+            </fieldset>
+            <fieldset class="pergunta" data-pergunta="privacidade">
+              <legend>O site ou o formulário diz o que é feito com os dados das pessoas?</legend>
+              <label><input type="radio" name="rx-privacidade" value="sim"><span>Sim</span></label>
+              <label><input type="radio" name="rx-privacidade" value="nao"><span>Não</span></label>
+            </fieldset>
+          </div>
+          <div class="raiox-resultado" aria-live="polite">
+            <div class="raiox-iglu" aria-hidden="true">
+              <img class="pixel raiox-iglu-sombra" src="img/iglu.png" alt="" width="204" height="171">
+              <img class="pixel raiox-iglu-pronto" src="img/iglu.png" alt="" width="204" height="171" data-raiox-iglu>
+            </div>
+            <p class="raiox-contagem"><b data-raiox-blocos>0 de 8 blocos</b> <span data-raiox-respondidas>(0 de 8 respondidas)</span></p>
+            <p class="raiox-vazio" data-raiox-vazio>Responda as perguntas: o iglu se monta de baixo para cima, e o que
+              aparecer aqui é o que falta.</p>
+            <ul class="raiox-lista" data-raiox-lista></ul>
+            <p class="raiox-total" data-raiox-total hidden></p>
+            <p class="raiox-site" data-raiox-site hidden>Sem site? O <a href="https://sites.linupedia.com.br/">Linu Sites</a>,
+              da mesma família, faz o site já com o cadeado e as atualizações.</p>
+            <button type="button" class="botao" data-raiox-usar hidden>Levar para o meu pacote</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="servicos">
+      <div class="dentro">
+        <h2>Serviços</h2>
+        <p class="secao-sub">Toque em <b>Adicionar</b> no que interessa: o pacote vai se montando, com a estimativa, e a
+          mensagem do orçamento sai pronta.</p>
+        <p class="servicos-nota">Valores de referência, “a partir de”. O preço certo vem na proposta, por escrito, depois
+          de entender quantas pessoas, aparelhos e contas o negócio tem.</p>
+        <div class="servicos-grade">
+          <!-- No computador, as áreas e o pacote ficam parados ao lado; no tablet, as áreas numa faixa no alto; no celular,
+               uma faixa que rola de lado e o pacote preso embaixo (DIRETRIZES-UX.md, seção 3) -->
+          <aside class="servicos-lado">
+            <div class="areas" role="toolbar" aria-label="Filtrar por área" hidden data-areas>
+              <button type="button" class="area" data-area="todas" aria-pressed="true">Todas <span class="area-conta">9</span></button>
+              <button type="button" class="area" data-area="golpes" aria-pressed="false"><svg class="icone" aria-hidden="true"><use href="#i-escudo"/></svg> Golpes <span class="area-conta">2</span></button>
+              <button type="button" class="area" data-area="senhas" aria-pressed="false"><svg class="icone" aria-hidden="true"><use href="#i-chave"/></svg> Senhas e dados <span class="area-conta">2</span></button>
+              <button type="button" class="area" data-area="site" aria-pressed="false"><svg class="icone" aria-hidden="true"><use href="#i-globo"/></svg> Site, e-mail e LGPD <span class="area-conta">3</span></button>
+              <button type="button" class="area" data-area="acompanhar" aria-pressed="false"><svg class="icone" aria-hidden="true"><use href="#i-olho"/></svg> Acompanhamento <span class="area-conta">2</span></button>
+            </div>
+            <div class="pacote" data-pacote>
+              <p class="pacote-titulo">Seu pacote</p>
+              <p class="pacote-vazio" data-pacote-vazio>Nada ainda. Adicione um serviço, faça o Raio-X ou escolha um pacote
+                pronto.</p>
+              <ul class="pacote-lista" data-pacote-lista></ul>
+              <p class="pacote-total" data-pacote-total hidden></p>
+              <a class="botao pacote-enviar" href="#contato">Pedir orçamento</a>
+              <button type="button" class="pacote-limpar" data-pacote-limpar hidden>Limpar</button>
+            </div>
+          </aside>
+
+          <div class="servicos" data-servicos>
+            <article class="servico" data-cat="acompanhar" data-id="checkup" data-preco="350" data-tipo="unico">
+              <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-cadeado"/></svg>Acompanhamento</span>
+              <h3>Check-up de segurança</h3>
+              <p>Uma conferência de tudo: contas, senhas, aparelhos, cópias, e-mail e site. Você recebe um relatório com o
+                que está aberto e a ordem para fechar.</p>
+              <p class="servico-preco">a partir de <b>R$&nbsp;350</b> <span>(com relatório)</span></p>
+              <button type="button" class="adicionar" data-adicionar aria-pressed="false">Adicionar</button>
+            </article>
+            <article class="servico" data-cat="golpes" data-id="contas" data-preco="250" data-tipo="unico">
+              <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-escudo"/></svg>Golpes</span>
+              <h3>WhatsApp e contas protegidos</h3>
+              <p>Verificação em duas etapas e recuperação configuradas no WhatsApp, no e-mail e no Instagram do negócio,
+                para ninguém clonar nem tomar a conta.</p>
+              <p class="servico-preco">a partir de <b>R$&nbsp;250</b></p>
+              <button type="button" class="adicionar" data-adicionar aria-pressed="false">Adicionar</button>
+            </article>
+            <article class="servico" data-cat="golpes" data-id="treino" data-preco="400" data-tipo="unico">
+              <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-pessoas"/></svg>Golpes</span>
+              <h3>Treino antigolpe da equipe</h3>
+              <p>Uma hora com a equipe, com casos de verdade: o golpe do Pix, o falso suporte, o link falso. E o que fazer
+                nos primeiros minutos se alguém cair.</p>
+              <p class="servico-preco">a partir de <b>R$&nbsp;400</b> <span>(1 hora)</span></p>
+              <button type="button" class="adicionar" data-adicionar aria-pressed="false">Adicionar</button>
+            </article>
+            <article class="servico" data-cat="senhas" data-id="senhas" data-preco="300" data-tipo="unico">
+              <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-chave"/></svg>Senhas e dados</span>
+              <h3>Senhas da equipe</h3>
+              <p>Um gerenciador de senhas para o negócio: cada pessoa com a sua, nenhuma repetida, e quem sai da equipe
+                perde o acesso no mesmo dia.</p>
+              <p class="servico-preco">a partir de <b>R$&nbsp;300</b></p>
+              <button type="button" class="adicionar" data-adicionar aria-pressed="false">Adicionar</button>
+            </article>
+            <article class="servico" data-cat="senhas" data-id="copias" data-preco="400" data-tipo="unico">
+              <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-nuvem"/></svg>Senhas e dados</span>
+              <h3>Cópias de segurança automáticas</h3>
+              <p>Os arquivos do computador e do celular copiados sozinhos para outro lugar, e um teste de recuperação para
+                saber que a cópia volta mesmo.</p>
+              <p class="servico-preco">a partir de <b>R$&nbsp;400</b></p>
+              <button type="button" class="adicionar" data-adicionar aria-pressed="false">Adicionar</button>
+            </article>
+            <article class="servico" data-cat="site" data-id="email" data-preco="300" data-tipo="unico">
+              <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-envelope"/></svg>Site, e-mail e LGPD</span>
+              <h3>E-mail sem golpe</h3>
+              <p>SPF, DKIM e DMARC configurados no domínio, para ninguém mandar e-mail se passando pelo negócio e os seus
+                não caírem no spam.</p>
+              <p class="servico-preco">a partir de <b>R$&nbsp;300</b></p>
+              <button type="button" class="adicionar" data-adicionar aria-pressed="false">Adicionar</button>
+            </article>
+            <article class="servico" data-cat="site" data-id="site" data-preco="400" data-tipo="unico">
+              <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-globo"/></svg>Site, e-mail e LGPD</span>
+              <h3>Site em dia</h3>
+              <p>HTTPS com o cadeado, cabeçalhos de segurança e as atualizações em dia, no site que você já tem (WordPress
+                ou outro).</p>
+              <p class="servico-preco">a partir de <b>R$&nbsp;400</b></p>
+              <button type="button" class="adicionar" data-adicionar aria-pressed="false">Adicionar</button>
+            </article>
+            <article class="servico" data-cat="site" data-id="privacidade" data-preco="500" data-tipo="unico">
+              <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-documento"/></svg>Site, e-mail e LGPD</span>
+              <h3>Aviso de privacidade</h3>
+              <p>O texto da LGPD dizendo que dados o negócio guarda, para quê e como pedir para apagar. Feito a partir de
+                um modelo, para o site e os formulários.</p>
+              <p class="servico-preco">a partir de <b>R$&nbsp;500</b></p>
+              <button type="button" class="adicionar" data-adicionar aria-pressed="false">Adicionar</button>
+            </article>
+            <article class="servico" data-cat="acompanhar" data-id="vigia" data-preco="150" data-tipo="mensal">
+              <span class="servico-area"><svg class="icone" aria-hidden="true"><use href="#i-olho"/></svg>Acompanhamento</span>
+              <h3>Vigia</h3>
+              <p>Todo mês, a conferência de tudo: as cópias rodando, as contas, o site, e o alerta se alguma senha do
+                negócio aparecer num vazamento.</p>
+              <p class="servico-preco">a partir de <b>R$&nbsp;150</b> por mês</p>
+              <button type="button" class="adicionar" data-adicionar aria-pressed="false">Adicionar</button>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-gelo" id="pacotes">
+      <div class="dentro">
+        <h2>Pacotes prontos</h2>
+        <p class="secao-sub">Combinações que costumam andar juntas. Escolha uma e mude o que quiser antes de pedir.</p>
+        <div class="pacotes">
+          <article class="pacote-pronto">
+            <p class="pacote-nome">Básico</p>
+            <p>O primeiro passo: saber o que está aberto e fechar as portas por onde mais entra golpe.</p>
+            <ul>
+              <li>Check-up de segurança</li>
+              <li>WhatsApp e contas protegidos</li>
+              <li>Senhas da equipe</li>
+            </ul>
+            <p class="pacote-preco" data-pacote-preco="checkup contas senhas">a partir de <b>R$&nbsp;900</b></p>
+            <button type="button" class="botao botao-linha" data-escolher-pacote="checkup contas senhas">Escolher este</button>
+          </article>
+          <article class="pacote-pronto pacote-pronto-destaque">
+            <p class="pacote-nome">Negócio protegido</p>
+            <p>Tudo do básico, as cópias, a equipe treinada e alguém conferindo todo mês.</p>
+            <ul>
+              <li>Check-up de segurança</li>
+              <li>WhatsApp e contas protegidos</li>
+              <li>Senhas da equipe</li>
+              <li>Cópias de segurança automáticas</li>
+              <li>Treino antigolpe da equipe</li>
+              <li>Vigia, todo mês</li>
+            </ul>
+            <p class="pacote-preco" data-pacote-preco="checkup contas senhas copias treino vigia">a partir de <b>R$&nbsp;1.700</b> + <b>R$&nbsp;150</b> por mês</p>
+            <button type="button" class="botao" data-escolher-pacote="checkup contas senhas copias treino vigia">Escolher este</button>
+          </article>
+          <article class="pacote-pronto">
+            <p class="pacote-nome">Com site</p>
+            <p>Para quem tem site e domínio: o site, o e-mail e o aviso de privacidade em ordem.</p>
+            <ul>
+              <li>Site em dia</li>
+              <li>E-mail sem golpe</li>
+              <li>Aviso de privacidade</li>
+            </ul>
+            <p class="pacote-preco" data-pacote-preco="site email privacidade">a partir de <b>R$&nbsp;1.200</b></p>
+            <button type="button" class="botao botao-linha" data-escolher-pacote="site email privacidade">Escolher este</button>
+          </article>
+          <article class="pacote-pronto pacote-pronto-familia">
+            <p class="pacote-nome">Família Linu</p>
+            <p>Pacotes que juntam site, redes e segurança, da mesma família:</p>
+            <ul>
+              <li>Linu Sites: site e aplicativo</li>
+              <li>Digital Linu: vídeo, redes e anúncios</li>
+              <li>Linu Seguro: o que está nesta página</li>
+            </ul>
+            <a class="botao botao-linha" href="https://familia.linupedia.com.br/#pacotes">Ver na Família Linu</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="como">
+      <div class="dentro">
+        <h2>Como funciona</h2>
+        <p class="secao-sub">Como se monta um iglu: um bloco de cada vez, de baixo para cima. As senhas ficam com você do
+          começo ao fim.</p>
+        <ol class="passos">
+          <li><span class="passo-bloco" aria-hidden="true">1</span><b>Conversa</b><span>Você conta como o negócio funciona: quem usa o quê, em quais aparelhos e contas.</span></li>
+          <li><span class="passo-bloco" aria-hidden="true">2</span><b>Proposta</b><span>Chega por escrito o que está aberto, o que entra, o prazo e o preço de cada parte.</span></li>
+          <li><span class="passo-bloco" aria-hidden="true">3</span><b>Configuração junto</b><span>Por chamada ou presencial, com você digitando as senhas. A equipe não guarda nenhuma.</span></li>
+          <li><span class="passo-bloco" aria-hidden="true">4</span><b>Acompanhamento</b><span>Um guia curto do que fazer se der problema e, com o Vigia, uma conferência por mês.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="secao secao-gelo" id="duvidas">
+      <div class="dentro duvidas-dentro">
+        <h2>Dúvidas</h2>
+        <div class="duvidas">
+          <details>
+            <summary>Vocês garantem que nunca vou cair em golpe?</summary>
+            <p>Não. Ninguém pode garantir isso. O que dá para fazer é diminuir muito as chances e deixar o negócio pronto
+              para reagir rápido se acontecer: conta recuperável, cópia guardada, equipe que sabe o primeiro passo.</p>
+          </details>
+          <details>
+            <summary>Vocês têm acesso às minhas senhas?</summary>
+            <p>Não. As senhas ficam com você. A equipe configura junto, por chamada ou presencial, com você digitando, e não
+              guarda nada.</p>
+          </details>
+          <details>
+            <summary>O aviso de privacidade substitui um advogado?</summary>
+            <p>Não. É um modelo pensado para negócio pequeno, ajustado ao que você coleta. Se o negócio lida com dados
+              sensíveis (saúde, crianças) ou com muito volume de dados, vale a revisão de um advogado.</p>
+          </details>
+          <details>
+            <summary>Preciso ter site?</summary>
+            <p>Não. Quase tudo vale para quem tem só WhatsApp e Instagram: contas, senhas, cópias e o treino. O site e o
+              e-mail com domínio entram só se você tiver.</p>
+          </details>
+          <details>
+            <summary>Como é o pagamento?</summary>
+            <p>Entrega única: metade quando a proposta é aceita e metade na entrega, por Pix ou transferência. Mensal: no
+              começo de cada mês.</p>
+          </details>
+          <details>
+            <summary>Quantas revisões entram?</summary>
+            <p>Duas rodadas de ajuste em cada entrega (o relatório do check-up, o aviso de privacidade). Conserto de erro
+              nosso não conta.</p>
+          </details>
+          <details>
+            <summary>Tem contrato de fidelidade?</summary>
+            <p>Não. O Vigia é combinado mês a mês. Para parar, é só avisar com 30 dias, sem multa.</p>
+          </details>
+          <details>
+            <summary>Atendem fora de Brasília?</summary>
+            <p>Sim. Quase tudo é feito à distância, por chamada de vídeo. O presencial depende da cidade.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao contato" id="contato">
+      <div class="dentro contato-dentro">
+        <div class="contato-texto">
+          <h2>Peça o orçamento</h2>
+          <p>Confira o pacote, conte um pouco do negócio e mande. A mensagem já sai escrita no WhatsApp ou no e-mail.</p>
+          <p class="contato-canais">WhatsApp (61) 99667-2610<br>contato@linupedia.com.br</p>
+          <p class="contato-aviso">Nunca mande senha por mensagem, nem para a gente.</p>
+        </div>
+        <div class="formulario" data-formulario>
+          <div class="campo">
+            <label for="nome">Seu nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required aria-describedby="nome-erro">
+            <p class="campo-erro" id="nome-erro" aria-live="polite"></p>
+          </div>
+          <div class="campo">
+            <label for="negocio">Negócio e cidade</label>
+            <input type="text" id="negocio" name="negocio" placeholder="Ex.: clínica em Águas Claras" required aria-describedby="negocio-erro">
+            <p class="campo-erro" id="negocio-erro" aria-live="polite"></p>
+          </div>
+          <div class="campo">
+            <span class="campo-rotulo">O seu pacote</span>
+            <p class="formulario-pacote" data-formulario-pacote>Nenhum serviço escolhido: tudo bem, conte na mensagem.</p>
+            <p class="formulario-total" data-formulario-total hidden></p>
+          </div>
+          <div class="campo">
+            <label for="mensagem">Algo mais? <span class="opcional">(opcional)</span></label>
+            <textarea id="mensagem" name="mensagem" rows="3" placeholder="Quantas pessoas na equipe, se já caiu em algum golpe, se tem site…"></textarea>
+          </div>
+          <div class="formulario-botoes">
+            <a class="botao botao-whatsapp" href="https://wa.me/5561996672610" target="_blank" rel="noopener" data-enviar="whatsapp">Mandar pelo WhatsApp</a>
+            <a class="botao botao-linha-clara" href="mailto:contato@linupedia.com.br" data-enviar="email">Mandar por e-mail</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- No celular e no tablet, o pacote fica preso embaixo, ao alcance do polegar -->
+  <div class="barra-pacote" data-barra hidden>
+    <span class="barra-texto" data-barra-texto aria-live="polite"></span>
+    <a class="botao botao-pequeno" href="#contato">Pedir orçamento</a>
+  </div>
+
+  <footer class="rodape">
+    <div class="dentro rodape-dentro">
+      <p><b>Linu Seguro</b>: segurança digital para pequenos negócios.<br>Da mesma equipe do
+        <a href="https://sites.linupedia.com.br/">Linu Sites</a>, do <a href="https://digital.linupedia.com.br/">Digital Linu</a>
+        e da <a href="https://linupedia.com.br/">LinuPedia</a>.</p>
+      <div class="rodape-links">
+        <a class="rodape-link" href="https://familia.linupedia.com.br/identidade">Identidade visual</a>
+        <a class="rodape-link" href="https://familia.linupedia.com.br/">Família Linu</a>
+        <a class="topo-voltar" href="#" data-voltar>Voltar ao topo <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
