@@ -1,0 +1,44 @@
+{
+  "_leia": "Os preços de referência (“a partir de”) deste site, em reais. A página sai daqui: depois de mudar, rode python3 ferramentas/precos-servicos.py. A Família Linu lê este arquivo (do GitHub) para montar as rotas.",
+  "moeda": "BRL",
+  "servicos": {
+    "checkup": {
+      "valor": 350,
+      "tipo": "unico",
+      "detalhe": "com relatório"
+    },
+    "contas": {
+      "valor": 250,
+      "tipo": "unico"
+    },
+    "treino": {
+      "valor": 400,
+      "tipo": "unico",
+      "detalhe": "1 hora"
+    },
+    "senhas": {
+      "valor": 300,
+      "tipo": "unico"
+    },
+    "copias": {
+      "valor": 400,
+      "tipo": "unico"
+    },
+    "email": {
+      "valor": 300,
+      "tipo": "unico"
+    },
+    "site": {
+      "valor": 400,
+      "tipo": "unico"
+    },
+    "privacidade": {
+      "valor": 500,
+      "tipo": "unico"
+    },
+    "vigia": {
+      "valor": 150,
+      "tipo": "mensal"
+    }
+  }
+}

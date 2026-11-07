@@ -38,6 +38,7 @@ jobs:
           test -f index.html
           npx --yes html-validate@10.1.2 *.html
           python3 deploy/conferir-pagina.py
+          python3 ferramentas/precos-servicos.py --conferir
       # A conferência visual (07/11/2026): 390, 820 e 1280 px, claro e escuro; reprova com rolagem lateral, erro no
       # console, arquivo faltando ou falha séria de acessibilidade (axe). As capturas ficam como artefato da execução.
       - name: Conferência visual
