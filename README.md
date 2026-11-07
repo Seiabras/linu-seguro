@@ -24,6 +24,7 @@ O Caddy serve o subdomínio e manda `/identidade` para https://familia.linupedia
 | `arte/` | A origem do Linu com a chave (o prompt, as versões e a aprovada). |
 | `fontes/` | Chakra Petch 700 (títulos) e Red Hat Text 400 a 700 (texto), subconjunto latin, servidas pelo próprio site; licenças OFL em `OFL-chakra-petch.txt` e `OFL-red-hat-text.txt`. |
 | `robots.txt`, `sitemap.xml` | Para os buscadores. |
+| `ferramentas/conferir-visual.mjs` | A conferência visual que o Actions roda antes de publicar (cópia do `linuarquivos/modelos/ferramentas/`): 390, 820 e 1280 px, claro e escuro; reprova com rolagem lateral, erro no console, arquivo faltando ou falha séria de acessibilidade, e guarda as capturas como artefato. No computador: `node ferramentas/conferir-visual.mjs --raiz . --playwright <pasta do playwright> --axe <axe.min.js>`. |
 | `deploy/` | A publicação na VM: o `receber.sh`, a preparação, o `ligar-publicacao.sh` e a conferência das páginas. |
 | `.github/workflows/oracle.yml` | Confere e publica a cada push na `main`. |
 | `IDENTIDADE.md` | As decisões de identidade (o iglu de blocos, as formas, as cores, as fontes, a voz, o que evitar e o que mudou em 07/11/2026). Ler antes de mexer em tela. |

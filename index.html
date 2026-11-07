@@ -46,10 +46,10 @@
     <symbol id="i-domo" viewBox="0 0 360 220"><path d="M12.0 206 A168 190 0 0 1 19.5 150 H180 A26 26 0 0 0 154 176 V206Z"/><path d="M206 206 V176 A26 26 0 0 0 180 150 H340.5 A168 190 0 0 1 348.0 206Z"/><path d="M19.5 150 A168 190 0 0 1 41.8 98 H120 V150Z"/><path d="M120 150 V98 H240 V150Z"/><path d="M240 150 V98 H318.2 A168 190 0 0 1 340.5 150Z"/><path d="M41.8 98 A168 190 0 0 1 81.6 52 H180 V98Z"/><path d="M180 98 V52 H278.4 A168 190 0 0 1 318.2 98Z"/><path d="M81.6 52 A168 190 0 0 1 278.4 52Z"/></symbol>
   </svg>
   <!-- A faixa da família (06/11/2026): aponta para a Família Linu, que reúne os quatro serviços -->
-  <p class="faixa-irma">
+  <aside class="faixa-irma" aria-label="Site irmão">
     <span>Da família Linu, com o Linu Sites e o Digital Linu.</span>
     <a href="https://familia.linupedia.com.br/">Conheça a Família Linu <span aria-hidden="true">→</span></a>
-  </p>
+  </aside>
 
   <header class="topo">
     <div class="dentro topo-dentro">
@@ -215,7 +215,7 @@
         <div class="servicos-grade">
           <!-- No computador, as áreas e o pacote ficam parados ao lado; no tablet, as áreas numa faixa no alto; no celular,
                uma faixa que rola de lado e o pacote preso embaixo (DIRETRIZES-UX.md, seção 3) -->
-          <aside class="servicos-lado">
+          <div class="servicos-lado">
             <div class="areas" role="toolbar" aria-label="Filtrar por área" hidden data-areas>
               <button type="button" class="area" data-area="todas" aria-pressed="true">Todas <span class="area-conta">9</span></button>
               <button type="button" class="area" data-area="golpes" aria-pressed="false"><svg class="icone" aria-hidden="true"><use href="#i-escudo"/></svg> Golpes <span class="area-conta">2</span></button>
@@ -233,7 +233,7 @@
               <a class="botao pacote-enviar" href="#contato">Pedir orçamento</a>
               <button type="button" class="pacote-limpar" data-pacote-limpar hidden>Limpar</button>
             </div>
-          </aside>
+          </div>
 
           <!-- Os blocos assentados em fileiras desencontradas, como alvenaria: cada fileira começa meio bloco para o lado,
                e os meios-blocos das pontas são só desenho (css/estilo.css, "A parede de serviços") -->
