@@ -33,6 +33,7 @@ O Caddy serve o subdomínio e manda `/identidade` para https://familia.linupedia
 
 ## O que a página faz
 
+- **Raio-X no celular (11/11/2026):** abaixo de 700 px, as oito perguntas viram cartões de lado, um por vez, com “Pergunta 1 de 8” e as setas; responder leva à próxima sem resposta. O raio-X passou a caber em pouco mais de uma tela. Tablet e computador seguem com a grade.
 - **Raio-X de segurança: a cúpula se monta.** Oito perguntas de sim ou não (WhatsApp, contas, senhas, cópias, golpes,
   e-mail, site, privacidade), cada uma com o seu bloco numa cúpula desenhada em SVG (`data-rx-bloco`). Cada “sim”
   assenta o bloco, que desce e encaixa (“5 de 8 blocos”); cada “não” deixa o lugar tracejado na cor do Iglu; com os 8,

@@ -138,6 +138,7 @@
               </svg>
               <span data-raiox-mini>0 de 8 blocos</span>
             </div>
+            <div class="perguntas-faixa">
             <fieldset class="pergunta bloco" data-pergunta="whats">
               <legend><span class="pergunta-bloco">Bloco WhatsApp</span>O WhatsApp do negócio tem a confirmação em duas etapas ligada?</legend>
               <label><input type="radio" name="rx-whats" value="sim"><span>Sim</span></label>
@@ -179,6 +180,13 @@
               <label><input type="radio" name="rx-privacidade" value="sim"><span>Sim</span></label>
               <label><input type="radio" name="rx-privacidade" value="nao"><span>Não</span></label>
             </fieldset>
+            </div>
+            <!-- só no celular (11/11/2026): um bloco por vez, de lado; responder já leva ao próximo -->
+            <div class="perguntas-nav" data-perguntas-nav hidden>
+              <button type="button" class="perguntas-seta" data-perguntas-ir="-1" aria-label="Pergunta anterior">←</button>
+              <span data-perguntas-pos aria-live="polite">Pergunta 1 de 8</span>
+              <button type="button" class="perguntas-seta" data-perguntas-ir="1" aria-label="Próxima pergunta">→</button>
+            </div>
           </div>
           <div class="raiox-resultado" aria-live="polite">
             <div class="raiox-ceu">

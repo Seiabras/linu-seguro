@@ -400,5 +400,47 @@
   });
   lerRaiox();
 
+  // No celular (11/11/2026): os blocos em cartões de lado, um por vez. Responder leva ao próximo sem resposta; as setas
+  // e o deslizar também andam. No tablet e no computador fica a grade de antes.
+  var rxFaixa = document.querySelector(".perguntas-faixa");
+  var rxNav = document.querySelector("[data-perguntas-nav]");
+  var rxPos = document.querySelector("[data-perguntas-pos]");
+  var rxSetas = document.querySelectorAll("[data-perguntas-ir]");
+  var rxCelular = window.matchMedia("(max-width: 699px)");
+  function rxInicio(i) { return perguntas[i].offsetLeft - perguntas[0].offsetLeft; }
+  function rxAtual() {
+    var melhor = 0;
+    for (var i = 1; i < perguntas.length; i++) if (Math.abs(rxInicio(i) - rxFaixa.scrollLeft) < Math.abs(rxInicio(melhor) - rxFaixa.scrollLeft)) melhor = i;
+    return melhor;
+  }
+  function rxIr(i) {
+    i = Math.max(0, Math.min(perguntas.length - 1, i));
+    rxFaixa.scrollTo({ left: rxInicio(i), behavior: menosMovimento.matches ? "auto" : "smooth" });
+  }
+  function rxMarcar() {
+    var i = rxAtual();
+    rxPos.textContent = "Pergunta " + (i + 1) + " de " + perguntas.length;
+    rxSetas[0].disabled = i === 0;
+    rxSetas[1].disabled = i === perguntas.length - 1;
+  }
+  function rxModo() {
+    rxFaixa.classList.toggle("em-cartoes", rxCelular.matches);
+    rxNav.hidden = !rxCelular.matches;
+    if (rxCelular.matches) rxMarcar();
+  }
+  rxSetas.forEach(function (b) { b.addEventListener("click", function () { rxIr(rxAtual() + Number(b.dataset.perguntasIr)); }); });
+  rxFaixa.addEventListener("scroll", function () { if (rxCelular.matches) rxMarcar(); }, { passive: true });
+  perguntas.forEach(function (f, i) {
+    f.addEventListener("change", function () {
+      if (!rxCelular.matches) return;
+      var ordem = Array.prototype.slice.call(perguntas, i + 1).concat(Array.prototype.slice.call(perguntas, 0, i));
+      var prox = ordem.filter(function (p) { return !p.querySelector("input:checked"); })[0];
+      // espera o bloco assentar no iglu antes de passar
+      if (prox) setTimeout(function () { rxIr(Array.prototype.indexOf.call(perguntas, prox)); }, 450);
+    });
+  });
+  if (rxCelular.addEventListener) rxCelular.addEventListener("change", rxModo);
+  rxModo();
+
   mostrarPacote();
 })();

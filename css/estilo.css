@@ -212,6 +212,19 @@ b, strong { font-weight: 700; }
 .raiox-grade { display: grid; gap: 20px; }
 .raiox-grade > * { min-width: 0; }
 .perguntas { display: grid; gap: var(--jw); align-content: start; }
+.perguntas-faixa { display: contents; }
+.perguntas-nav[hidden] { display: none; }
+/* no celular, os oito blocos viram cartões de lado, um por vez (11/11/2026): o raio-X cabe numa tela e pouco */
+@media (max-width: 699px) {
+  .perguntas-faixa.em-cartoes { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; padding: 4px 0 8px; }
+  .perguntas-faixa.em-cartoes::-webkit-scrollbar { display: none; }
+  .perguntas-faixa.em-cartoes .pergunta { flex: 0 0 100%; scroll-snap-align: start; align-content: space-between; min-height: 170px; }
+  .perguntas-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-family: "Chakra Petch", sans-serif; font-weight: 700; color: var(--tinta-suave); }
+  .perguntas-seta { min-width: 48px; min-height: 44px; border: 0; background: var(--bloco); box-shadow: inset 0 0 0 1px var(--aresta), inset 0 -4px 0 var(--sombra); color: var(--tinta); font: 700 1.1rem "Chakra Petch", sans-serif; cursor: pointer; transition: opacity .2s ease-out, transform .15s ease-out; }
+  .perguntas-seta:active { transform: translateY(2px); }
+  .perguntas-seta:disabled { opacity: .35; cursor: default; }
+  .perguntas-seta:focus-visible { outline: 3px solid var(--foco); outline-offset: 2px; }
+}
 .pergunta { --c: 9px; margin: 0; padding: 12px 14px 18px; border: 0; min-inline-size: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .pergunta legend { float: left; width: 100%; padding: 0; margin-bottom: 4px; font-weight: 600; line-height: 1.4; }
 .pergunta legend small { display: block; color: var(--tinta-suave); font-size: .88rem; font-weight: 500; }
