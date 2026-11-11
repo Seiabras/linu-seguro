@@ -228,7 +228,7 @@
   var enviar = form.querySelector('[data-enviar="formulario"]');
   var estado = form.querySelector("[data-formulario-status]");
   // o que foi digitado não se perde ao recarregar
-  ["nome", "email", "negocio", "mensagem"].forEach(function (k) {
+  ["nome", "email", "telefone", "negocio", "mensagem"].forEach(function (k) {
     var v = ler("seguro-" + k);
     if (v) campo(k).value = v;
     campo(k).addEventListener("input", function () { guardar("seguro-" + k, campo(k).value); escreverMensagem(); });
@@ -265,7 +265,7 @@
   function dadosDo(canal) {
     var robo = form.querySelector('[name="site_extra"]');
     return {
-      nome: campo("nome").value.trim(), negocio: campo("negocio").value.trim(), email: campo("email").value.trim(),
+      nome: campo("nome").value.trim(), negocio: campo("negocio").value.trim(), email: campo("email").value.trim(), telefone: campo("telefone").value.trim(),
       pacote: escolhidos.map(function (id) { return nomes[id]; }).join(", "),
       estimativa: escolhidos.length ? estimativa(escolhidos) : "",
       mensagem: campo("mensagem").value.trim(), canal: canal, site_extra: robo ? robo.value : ""
