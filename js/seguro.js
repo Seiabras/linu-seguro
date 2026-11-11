@@ -217,21 +217,25 @@
     olhar.observe(document.querySelector(".abertura"));
   }
 
-  /* 5. Formulário: validação na hora e a mensagem pronta para o WhatsApp e o e-mail */
+  /* 5. Formulário: validação na hora; “Enviar pelo formulário” manda daqui mesmo (chega no e-mail e no /admin da
+        Família, desde 11/11/2026) e o WhatsApp abre com a mensagem pronta */
   var form = document.querySelector("[data-formulario]");
   function campo(k) { return document.getElementById(k); }
-  var campos = { nome: campo("nome"), negocio: campo("negocio") };
-  var avisos = { nome: "Escreva o seu nome.", negocio: "Conte o tipo de negócio e a cidade." };
+  var campos = { nome: campo("nome"), negocio: campo("negocio"), email: campo("email") };
+  var avisos = { nome: "Escreva o seu nome.", negocio: "Conte o tipo de negócio e a cidade.", email: "Escreva um e-mail válido, como nome@exemplo.com." };
+  var EMAIL = /^[^\s@<>"]+@[^\s@<>"]+\.[a-z]{2,}$/i;
   var whats = form.querySelector('[data-enviar="whatsapp"]');
-  var email = form.querySelector('[data-enviar="email"]');
+  var enviar = form.querySelector('[data-enviar="formulario"]');
+  var estado = form.querySelector("[data-formulario-status]");
   // o que foi digitado não se perde ao recarregar
-  ["nome", "negocio", "mensagem"].forEach(function (k) {
+  ["nome", "email", "negocio", "mensagem"].forEach(function (k) {
     var v = ler("seguro-" + k);
     if (v) campo(k).value = v;
     campo(k).addEventListener("input", function () { guardar("seguro-" + k, campo(k).value); escreverMensagem(); });
   });
   function conferir(k, mostrar) {
-    var ok = campos[k].value.trim().length >= 2;
+    var v = campos[k].value.trim();
+    var ok = k === "email" ? EMAIL.test(v) : v.length >= 2;
     if (mostrar || ok) {
       document.getElementById(k + "-erro").textContent = ok ? "" : avisos[k];
       campos[k].setAttribute("aria-invalid", String(!ok));
@@ -254,12 +258,19 @@
     return partes.join("\n");
   }
   function escreverMensagem() {
-    var t = encodeURIComponent(texto());
-    whats.href = "https://wa.me/5561996672610?text=" + t;
-    email.href = "mailto:contato@linupedia.com.br?subject=" + encodeURIComponent("Orçamento Linu Seguro") + "&body=" + t;
+    whats.href = "https://wa.me/5524981013398?text=" + encodeURIComponent(texto());
   }
   // o pedido também fica registrado (linuarquivos/servidor/linu-pedidos): sendBeacon não atrasa a abertura do WhatsApp
   // nem do e-mail e segue mesmo se a página fechar; se falhar, a conversa continua igual
+  function dadosDo(canal) {
+    var robo = form.querySelector('[name="site_extra"]');
+    return {
+      nome: campo("nome").value.trim(), negocio: campo("negocio").value.trim(), email: campo("email").value.trim(),
+      pacote: escolhidos.map(function (id) { return nomes[id]; }).join(", "),
+      estimativa: escolhidos.length ? estimativa(escolhidos) : "",
+      mensagem: campo("mensagem").value.trim(), canal: canal, site_extra: robo ? robo.value : ""
+    };
+  }
   function registrar(canal) {
     try {
       var robo = form.querySelector('[name="site_extra"]');
@@ -272,18 +283,40 @@
       if (navigator.sendBeacon) navigator.sendBeacon("/api/pedido", new Blob([JSON.stringify(dados)], { type: "application/json" }));
     } catch (e) {}
   }
-  [whats, email].forEach(function (a) {
-    a.addEventListener("click", function (e) {
-      var ok = conferir("nome", true) & conferir("negocio", true);
-      if (!ok) {
-        e.preventDefault();
-        form.querySelector('[aria-invalid="true"]').focus();
-        return;
-      }
-      registrar(a === email ? "email" : "whatsapp");
-      a.classList.add("enviado");
-      setTimeout(function () { a.classList.remove("enviado"); }, 1600);
-    });
+  whats.addEventListener("click", function (e) {
+    var ok = conferir("nome", true) & conferir("negocio", true);
+    if (!ok) {
+      e.preventDefault();
+      form.querySelector('[aria-invalid="true"]').focus();
+      return;
+    }
+    registrar("whatsapp");
+    whats.classList.add("enviado");
+    setTimeout(function () { whats.classList.remove("enviado"); }, 1600);
+  });
+  // o formulário: o e-mail passa a ser obrigatório; enquanto envia, o botão diz “Enviando…”; deu certo, a confirmação
+  // fica escrita embaixo; falhou, o que foi digitado continua e o WhatsApp segue como saída
+  enviar.addEventListener("click", function () {
+    var ok = conferir("nome", true) & conferir("email", true) & conferir("negocio", true);
+    if (!ok) { form.querySelector('[aria-invalid="true"]').focus(); return; }
+    enviar.disabled = true;
+    enviar.textContent = "Enviando…";
+    estado.className = "formulario-status";
+    estado.textContent = "";
+    fetch("/api/pedido", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(dadosDo("formulario")) })
+      .then(function (r) {
+        if (!r.ok) throw new Error(String(r.status));
+        enviar.textContent = "Enviado";
+        estado.className = "formulario-status ok";
+        estado.textContent = "Recebido! A resposta chega no seu e-mail (" + campo("email").value.trim() + ") em até 1 dia útil.";
+        setTimeout(function () { enviar.disabled = false; enviar.textContent = "Enviar pelo formulário"; }, 4000);
+      })
+      .catch(function () {
+        enviar.disabled = false;
+        enviar.textContent = "Enviar pelo formulário";
+        estado.className = "formulario-status erro";
+        estado.textContent = "Não deu para enviar agora. Tente de novo em instantes ou mande pelo WhatsApp.";
+      });
   });
 
   /* 6. Voltar ao topo, sem deixar o # no endereço */

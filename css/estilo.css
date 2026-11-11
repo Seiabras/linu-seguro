@@ -544,3 +544,15 @@ body:has(.barra-pacote:not([hidden])) .rodape { padding-bottom: 96px; }
 /* o pedido: o campo escondido dos robôs e o aviso de privacidade */
 .pote { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .formulario-privacidade { margin: 4px 0 0; font-size: .85rem; opacity: .85; }
+/* a confirmação do formulário (11/11/2026) */
+.formulario-status { margin: 0; font-weight: 700; }
+.formulario-status:empty { display: none; }
+.formulario-status.ok { color: #15803D; }
+.formulario-status.erro { color: #B91C1C; }
+:root[data-theme="dark"] .formulario-status.ok { color: #86EFAC; }
+:root[data-theme="dark"] .formulario-status.erro { color: #FCA5A5; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .formulario-status.ok { color: #86EFAC; }
+  :root:not([data-theme="light"]) .formulario-status.erro { color: #FCA5A5; }
+}
+.formulario-botoes .botao[disabled] { opacity: .7; cursor: progress; }
