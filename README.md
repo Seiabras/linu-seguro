@@ -109,3 +109,5 @@ desenhada com as contas de uma meia-elipse (centro 180 × 206, raios 168 e 190, 
 
 Nenhuma rolagem lateral em 390, 820 e 1280 px, no claro e no escuro, e nenhum erro no console. Altura da página: 9.764
 px no celular (390 px), 7.484 px no tablet (820 px) e 5.866 px no computador (1280 px).
+
+- **Contador de visitas do Farol (11/11/2026):** `js/farol-visitas.js` é cópia do `linu-farol/v.js` (mudou lá, muda aqui). Conta as visitas sem cookie; o CSP libera `https://farol.linupedia.com.br` no `connect-src` (na página e no Caddy). Os números ficam no painel da casa: https://farol.linupedia.com.br/p/casa-seguro/.
