@@ -26,7 +26,7 @@ O Caddy serve o subdomínio e manda `/identidade` para https://familia.linupedia
 | `robots.txt`, `sitemap.xml` | Para os buscadores. |
 | `ferramentas/conferir-visual.mjs` | A conferência visual que o Actions roda antes de publicar (cópia do `linuarquivos/modelos/ferramentas/`): 390, 820 e 1280 px, claro e escuro; reprova com rolagem lateral, erro no console, arquivo faltando ou falha séria de acessibilidade, e guarda as capturas como artefato. No computador: `node ferramentas/conferir-visual.mjs --raiz . --playwright <pasta do playwright> --axe <axe.min.js>`. |
 | `precos.json` e `ferramentas/precos-servicos.py` | **Os preços numa fonte só** (07/11/2026): o `precos.json` é a fonte; o script escreve no `index.html` o `data-preco`/`data-tipo`, a linha “a partir de” de cada serviço, o `minPrice` do JSON-LD e o total dos pacotes prontos. Para mudar um preço: editar o `precos.json` e rodar `python3 ferramentas/precos-servicos.py`. O Actions confere (`--conferir`) e não publica se a página discordar. A Família Linu lê este arquivo para as rotas. |
-| `deploy/` | A publicação na VM: o `receber.sh`, a preparação, o `ligar-publicacao.sh` e a conferência das páginas. |
+| `deploy/` | A publicação na VM: o `receber.sh`, a preparação, o `ligar-publicacao.sh` e a conferência das páginas. O `receber.sh` recusa pacote com atalho (link), que poderia apontar para fora do site (21/11/2026). |
 | `.github/workflows/oracle.yml` | Confere e publica a cada push na `main`. |
 | `IDENTIDADE.md` | As decisões de identidade (o iglu de blocos, as formas, as cores, as fontes, a voz, o que evitar e o que mudou em 07/11/2026). Ler antes de mexer em tela. |
 | `DIRETRIZES-UX.md` | As diretrizes de interface e desempenho de todos os projetos. |
